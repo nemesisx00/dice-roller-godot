@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dsbw4r4dv5itt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oelrb"]
+frequency = 0.003
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6filv"]
+noise = SubResource("FastNoiseLite_oelrb")
+
+[resource]
+albedo_color = Color(0.27451, 0.180392, 0.0823529, 1)
+roughness_texture = SubResource("NoiseTexture2D_6filv")

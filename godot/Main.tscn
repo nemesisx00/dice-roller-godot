@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://bmgyf6xj5nywp"]
+
+[ext_resource type="Material" uid="uid://dsbw4r4dv5itt" path="res://assets/material-tray.tres" id="1_3ym54"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_58oft"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3xr4h"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b3eik"]
+size = Vector3(50, 20, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_phx6d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8mk4x"]
+size = Vector3(50, 20, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_617tb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3k2ae"]
+size = Vector3(1, 20, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ef1hq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfc8e"]
+size = Vector3(1, 20, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lpejv"]
+
+[node name="App" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.987139, 0.063013, 0.146921, -0.159864, 0.389097, 0.907219, 0, -0.919039, 0.394166, 0, 50, 0)
+
+[node name="DiceTray" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="DiceTray"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/Floor"]
+shape = SubResource("BoxShape3D_58oft")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceTray/Floor/CollisionShape3D"]
+mesh = SubResource("PlaneMesh_3xr4h")
+surface_material_override/0 = ExtResource("1_3ym54")
+
+[node name="WallNorth" type="StaticBody3D" parent="DiceTray/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/Floor/WallNorth"]
+shape = SubResource("BoxShape3D_b3eik")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceTray/Floor/WallNorth/CollisionShape3D"]
+transform = Transform3D(50, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_phx6d")
+surface_material_override/0 = ExtResource("1_3ym54")
+
+[node name="WallSouth" type="StaticBody3D" parent="DiceTray/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/Floor/WallSouth"]
+shape = SubResource("BoxShape3D_8mk4x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceTray/Floor/WallSouth/CollisionShape3D"]
+transform = Transform3D(50, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_617tb")
+surface_material_override/0 = ExtResource("1_3ym54")
+
+[node name="WallEast" type="StaticBody3D" parent="DiceTray/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 10, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/Floor/WallEast"]
+shape = SubResource("BoxShape3D_3k2ae")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceTray/Floor/WallEast/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_ef1hq")
+surface_material_override/0 = ExtResource("1_3ym54")
+
+[node name="WallWest" type="StaticBody3D" parent="DiceTray/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 10, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/Floor/WallWest"]
+shape = SubResource("BoxShape3D_yfc8e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceTray/Floor/WallWest/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_lpejv")
+surface_material_override/0 = ExtResource("1_3ym54")
+
+[node name="Dice" type="Node3D" parent="."]
+unique_name_in_owner = true

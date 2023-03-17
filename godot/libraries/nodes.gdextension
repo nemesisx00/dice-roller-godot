@@ -1,0 +1,9 @@
+[gd_resource type="GDExtension" format=3 uid="uid://by4lmu1nyjv1j"]
+
+[resource]
+
+[configuration]
+entry_symbol = "godotCppInit"
+
+[libraries]
+windows.64 = "res://libraries/nodes.dll"
