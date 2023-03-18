@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq5n20yifaxto"]
+
+[ext_resource type="PackedScene" uid="uid://bud6ekkcpcpcj" path="res://ui/DiceButtons.tscn" id="1_fx36n"]
+[ext_resource type="PackedScene" uid="uid://fwxkyfry7ek4" path="res://ui/RollButtons.tscn" id="2_ijud4"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UILogic" type="UILogic" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DiceButtons" parent="." instance=ExtResource("1_fx36n")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 515.0
+offset_right = 151.0
+offset_bottom = 638.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="RollButtons" parent="." instance=ExtResource("2_ijud4")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 909.0
+offset_top = 515.0
+offset_right = 1142.0
+offset_bottom = 638.0
+grow_horizontal = 1
+grow_vertical = 1
