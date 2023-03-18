@@ -1,6 +1,4 @@
-[gd_resource type="GDExtension" format=3 uid="uid://by4lmu1nyjv1j"]
-
-[resource]
+[gd_resource type="GDExtension" format=3 uid="uid://0spbolxulfea"]
 
 [configuration]
 entry_symbol = "godotCppInit"
