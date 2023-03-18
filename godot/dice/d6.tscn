@@ -5,7 +5,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fye32"]
 
-[node name="d6" type="RigidBody3D"]
+[node name="d6" type="PrintOnSleep"]
 collision_layer = 2
 physics_material_override = ExtResource("1_mk2j4")
 
@@ -18,29 +18,26 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 [node name="DieNode" type="DieNode" parent="."]
 unique_name_in_owner = true
 
-[node name="Sides" type="Node3D" parent="."]
-unique_name_in_owner = true
-
-[node name="1" type="Direction" parent="Sides"]
+[node name="Face1" type="Direction" parent="DieNode"]
 Endpoint = Vector3(0, 1, 0)
 Value = 1
 
-[node name="2" type="Direction" parent="Sides"]
+[node name="Face2" type="Direction" parent="DieNode"]
 Endpoint = Vector3(0, 0, 1)
 Value = 2
 
-[node name="3" type="Direction" parent="Sides"]
+[node name="Face3" type="Direction" parent="DieNode"]
 Endpoint = Vector3(-1, 0, 0)
 Value = 3
 
-[node name="4" type="Direction" parent="Sides"]
+[node name="Face4" type="Direction" parent="DieNode"]
 Endpoint = Vector3(1, 0, 0)
 Value = 4
 
-[node name="5" type="Direction" parent="Sides"]
+[node name="Face5" type="Direction" parent="DieNode"]
 Endpoint = Vector3(0, 0, -1)
 Value = 5
 
-[node name="6" type="Direction" parent="Sides"]
+[node name="Face6" type="Direction" parent="DieNode"]
 Endpoint = Vector3(0, -1, 0)
 Value = 6
