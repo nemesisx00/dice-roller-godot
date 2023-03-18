@@ -1,4 +1,3 @@
-#include "printonsleep.hh"
 #include <godot_cpp/godot.hpp>
 #include <godot_cpp/core/class_db.hpp>
 
@@ -6,7 +5,6 @@
 #include <dienode.hh>
 #include <direction.hh>
 #include <hellocpp.hh>
-#include <printonsleep.hh>
 #include <uilogic.hh>
 
 using namespace godot;
@@ -19,7 +17,6 @@ void registerNodes(godot::ModuleInitializationLevel p_level)
 		ClassDB::register_class<DieNode>();
 		ClassDB::register_class<Direction>();
 		ClassDB::register_class<HelloCpp>();
-		ClassDB::register_class<PrintOnSleep>();
 		ClassDB::register_class<UILogic>();
 	}
 }
