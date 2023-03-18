@@ -17,6 +17,7 @@ namespace godot
 			static void _bind_methods();
 		
 		private:
+			bool isEditor;
 			bool hasPrinted;
 			int current;
 			int limit;
