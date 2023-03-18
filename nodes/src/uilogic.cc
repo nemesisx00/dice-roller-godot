@@ -25,6 +25,8 @@ void UILogic::_bind_methods()
 	ClassDB::bind_method(D_METHOD("pressHandler_takeHighest"), &UILogic::pressHandler_takeHighest);
 	ClassDB::bind_method(D_METHOD("pressHandler_takeLowest"), &UILogic::pressHandler_takeLowest);
 	ClassDB::bind_method(D_METHOD("pressHandler_total"), &UILogic::pressHandler_total);
+	
+	ADD_SIGNAL(MethodInfo("spawn_die", PropertyInfo(Variant::INT, "sides"), PropertyInfo(Variant::INT, "quantity")));
 }
 
 void UILogic::_ready()
@@ -58,11 +60,13 @@ void UILogic::pressHandler_d4()
 void UILogic::pressHandler_d6()
 {
 	UtilityFunctions::print("d6");
+	emit_signal("spawn_die", 6, 2);
 }
 
 void UILogic::pressHandler_d8()
 {
 	UtilityFunctions::print("d8");
+	emit_signal("spawn_die", 8, 6);
 }
 
 void UILogic::pressHandler_d10()
