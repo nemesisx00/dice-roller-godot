@@ -12,15 +12,12 @@ namespace godot
 		
 		public:
 			void _ready() override;
-			
 			int getValue() const;
 			
 		protected:
 			static void _bind_methods();
 		
 		private:
-			std::unique_ptr<Node3D> sides;
-			
 			DieNode() = default;
 			~DieNode() = default;
 	};
