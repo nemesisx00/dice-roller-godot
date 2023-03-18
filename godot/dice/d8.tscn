@@ -8,6 +8,7 @@ points = PackedVector3Array(0, 0.7, 0, 0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 0, -0.5,
 
 [node name="d8" type="PrintOnSleep"]
 collision_layer = 2
+collision_mask = 3
 physics_material_override = ExtResource("1_v6i3p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
