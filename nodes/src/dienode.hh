@@ -2,7 +2,6 @@
 #define DIENODE_HH
 
 #include <godot_cpp/classes/node3d.hpp>
-#include <memory>
 
 namespace godot
 {
