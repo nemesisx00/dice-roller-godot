@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://n2gnhglj0xu7"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://ryb3n7msrcc2" path="res://dice/dice-physics.tres" id="1_mk2j4"]
+[ext_resource type="PackedScene" uid="uid://cvw6irqjnlsrs" path="res://assets/dice/d6-blue.glb" id="2_boqla"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fye32"]
+
+[node name="d6" type="RigidBody3D"]
+collision_layer = 2
+physics_material_override = ExtResource("1_mk2j4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fye32")
+
+[node name="d6-blue" parent="CollisionShape3D" instance=ExtResource("2_boqla")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="DieNode" type="DieNode" parent="."]
+unique_name_in_owner = true
+
+[node name="Sides" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="1" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, 1, 0)
+Value = 1
+
+[node name="2" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, 0, 1)
+Value = 2
+
+[node name="3" type="Direction" parent="Sides"]
+Endpoint = Vector3(-1, 0, 0)
+Value = 3
+
+[node name="4" type="Direction" parent="Sides"]
+Endpoint = Vector3(1, 0, 0)
+Value = 4
+
+[node name="5" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, 0, -1)
+Value = 5
+
+[node name="6" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, -1, 0)
+Value = 6

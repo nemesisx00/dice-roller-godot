@@ -10,10 +10,16 @@ config_version=5
 
 [application]
 
-config/name="Dice Roller"
+config/name="Dice Roller (Godot)"
+run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Dice Roller"
+
+[layer_names]
+
+3d_physics/layer_1="Tray"
+3d_physics/layer_2="Dice"

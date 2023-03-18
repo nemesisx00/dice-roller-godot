@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmgyf6xj5nywp"]
+[gd_scene load_steps=14 format=3 uid="uid://bmgyf6xj5nywp"]
 
 [ext_resource type="Material" uid="uid://dsbw4r4dv5itt" path="res://assets/material-tray.tres" id="1_3ym54"]
+[ext_resource type="PackedScene" uid="uid://n2gnhglj0xu7" path="res://dice/d6.tscn" id="3_14evl"]
+[ext_resource type="PackedScene" uid="uid://dq5n20yifaxto" path="res://ui/UI.tscn" id="3_feucb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_58oft"]
 size = Vector3(50, 1, 50)
@@ -31,10 +33,10 @@ size = Vector3(1, 20, 50)
 [node name="App" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 15, 5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.987139, 0.063013, 0.146921, -0.159864, 0.389097, 0.907219, 0, -0.919039, 0.394166, 0, 50, 0)
+transform = Transform3D(0.637558, -0.303667, -0.70803, 0.770402, 0.251304, 0.585941, -2.01116e-09, -0.919039, 0.394166, 0, 50, 0)
 
 [node name="DiceTray" type="Node3D" parent="."]
 
@@ -93,3 +95,8 @@ surface_material_override/0 = ExtResource("1_3ym54")
 
 [node name="Dice" type="Node3D" parent="."]
 unique_name_in_owner = true
+
+[node name="d6" parent="Dice" instance=ExtResource("3_14evl")]
+transform = Transform3D(0.979553, -0.0173814, 0.200433, 0.108586, 0.884365, -0.45399, -0.169365, 0.466472, 0.86817, 0, 25, 0)
+
+[node name="UI" parent="." instance=ExtResource("3_feucb")]
