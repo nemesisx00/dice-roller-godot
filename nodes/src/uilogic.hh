@@ -12,25 +12,27 @@ namespace godot
 		public:
 			void _ready() override;
 			
-			void clickHandler_d4();
-			void clickHandler_d6();
-			void clickHandler_d8();
-			void clickHandler_d10();
-			void clickHandler_d12();
-			void clickHandler_d20();
-			void clickHandler_d100();
+			void pressHandler_d4();
+			void pressHandler_d6();
+			void pressHandler_d8();
+			void pressHandler_d10();
+			void pressHandler_d12();
+			void pressHandler_d20();
+			void pressHandler_d100();
 			
-			void clickHandler_dropHighest();
-			void clickHandler_dropLowest();
-			void clickHandler_median();
-			void clickHandler_takeHighest();
-			void clickHandler_takeLowest();
-			void clickHandler_total();
+			void pressHandler_average();
+			void pressHandler_dropHighest();
+			void pressHandler_dropLowest();
+			void pressHandler_takeHighest();
+			void pressHandler_takeLowest();
+			void pressHandler_total();
 		
 		protected:
 			static void _bind_methods();
 		
 		private:
+			bool isEditor;
+			
 			UILogic() = default;
 			~UILogic() = default;
 	};
