@@ -1,7 +1,10 @@
 #include <godot_cpp/godot.hpp>
 #include <godot_cpp/core/class_db.hpp>
 
+#include <dienode.hh>
+#include <direction.hh>
 #include <hellocpp.hh>
+#include <uilogic.hh>
 
 using namespace godot;
 
@@ -9,7 +12,10 @@ void registerNodes(godot::ModuleInitializationLevel p_level)
 {
 	if(p_level == MODULE_INITIALIZATION_LEVEL_SCENE)
 	{
+		ClassDB::register_class<DieNode>();
+		ClassDB::register_class<Direction>();
 		ClassDB::register_class<HelloCpp>();
+		ClassDB::register_class<UILogic>();
 	}
 }
 
