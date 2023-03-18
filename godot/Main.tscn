@@ -32,7 +32,7 @@ size = Vector3(1, 20, 50)
 [node name="App" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 20, 5)
+transform = Transform3D(1, 0, 0, 0, 0.899634, 0.436645, 0, -0.436645, 0.899634, 0, 18.3448, 23.8512)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.637558, -0.303667, -0.70803, 0.770402, 0.251304, 0.585941, -2.01116e-09, -0.919039, 0.394166, 0, 50, 0)
