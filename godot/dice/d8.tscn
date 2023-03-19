@@ -1,50 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://baom1djmb4wag"]
+[gd_scene load_steps=4 format=3 uid="uid://baom1djmb4wag"]
 
-[ext_resource type="PackedScene" uid="uid://c7xewooba354n" path="res://assets/dice/d8-blue.glb" id="1_n7sel"]
+[ext_resource type="PhysicsMaterial" uid="uid://ryb3n7msrcc2" path="res://dice/dice-physics.tres" id="1_cycck"]
+[ext_resource type="PackedScene" uid="uid://civyv1uoglkeh" path="res://assets/dice/d8-blue.glb" id="1_n7sel"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_16xkg"]
-points = PackedVector3Array(0, 0.7, 0, 0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0, -0.7, 0)
+points = PackedVector3Array(0, 1.4, 0, 1, 0, 1, -1, 0, 1, -1, 0, -1, 1, 0, -1, 0, -1.4, 0)
 
 [node name="d8" type="DieNode"]
 Sides = 8
+physics_material_override = ExtResource("1_cycck")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_16xkg")
 
 [node name="d8-blue" parent="CollisionShape3D" instance=ExtResource("1_n7sel")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Sides" type="Node3D" parent="."]
 unique_name_in_owner = true
 
 [node name="Face1" type="Direction" parent="Sides"]
-Endpoint = Vector3(1, -0.35, 0)
+Endpoint = Vector3(0, -0.35, 1)
 Value = 1
 
 [node name="Face2" type="Direction" parent="Sides"]
-Endpoint = Vector3(-1, 0.35, 0)
+Endpoint = Vector3(0, 0.35, -1)
 Value = 2
 
 [node name="Face3" type="Direction" parent="Sides"]
-Endpoint = Vector3(0, 0.35, 1)
+Endpoint = Vector3(-1, 0.35, 0)
 Value = 3
 
 [node name="Face4" type="Direction" parent="Sides"]
-Endpoint = Vector3(0, -0.35, -1)
+Endpoint = Vector3(1, -0.35, 0)
 Value = 4
 
 [node name="Face5" type="Direction" parent="Sides"]
-Endpoint = Vector3(-1, -0.35, 0)
+Endpoint = Vector3(0, -0.35, -1)
 Value = 5
 
 [node name="Face6" type="Direction" parent="Sides"]
-Endpoint = Vector3(1, 0.35, 0)
+Endpoint = Vector3(0, 0.35, 1)
 Value = 6
 
 [node name="Face7" type="Direction" parent="Sides"]
-Endpoint = Vector3(0, 0.35, -1)
+Endpoint = Vector3(1, 0.35, 0)
 Value = 7
 
 [node name="Face8" type="Direction" parent="Sides"]
-Endpoint = Vector3(0, -0.35, 1)
+Endpoint = Vector3(-1, -0.35, 0)
 Value = 8

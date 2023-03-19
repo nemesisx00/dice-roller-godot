@@ -1,17 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://n2gnhglj0xu7"]
+[gd_scene load_steps=4 format=3 uid="uid://n2gnhglj0xu7"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://ryb3n7msrcc2" path="res://dice/dice-physics.tres" id="1_x5avo"]
 [ext_resource type="PackedScene" uid="uid://cvw6irqjnlsrs" path="res://assets/dice/d6-blue.glb" id="2_boqla"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fye32"]
+size = Vector3(2, 2, 2)
 
 [node name="d6" type="DieNode"]
 Sides = 6
+physics_material_override = ExtResource("1_x5avo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_fye32")
 
 [node name="d6-blue" parent="CollisionShape3D" instance=ExtResource("2_boqla")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Sides" type="Node3D" parent="."]
 unique_name_in_owner = true
