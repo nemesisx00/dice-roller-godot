@@ -2,6 +2,7 @@
 #define UILOGIC_HH
 
 #include <godot_cpp/classes/control.hpp>
+#include <map>
 
 namespace godot
 {
@@ -32,9 +33,11 @@ namespace godot
 		
 		private:
 			bool isEditor;
+			std::map<int, int> diceCounts;
 			
 			UILogic() = default;
 			~UILogic() = default;
+			void spawnDice();
 	};
 }
 

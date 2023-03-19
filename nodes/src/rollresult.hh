@@ -10,7 +10,7 @@ struct RollResult
 {
 	RollResult(const int sides, const std::vector<int> values)
 	{
-		std::vector<int> sorted;
+		std::vector<int> sorted(values.size());
 		std::copy(values.begin(), values.end(), sorted.begin());
 		std::sort(sorted.begin(), sorted.end(), std::less<int>());
 		

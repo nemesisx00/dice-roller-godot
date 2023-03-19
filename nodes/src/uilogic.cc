@@ -1,4 +1,3 @@
-#include <godot_cpp/classes/v_box_container.hpp>
 #include <uilogic.hh>
 
 #include <godot_cpp/classes/button.hpp>
@@ -6,6 +5,7 @@
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/variant/callable.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <dienode.hh>
 
 using namespace godot;
 
@@ -26,7 +26,8 @@ void UILogic::_bind_methods()
 	ClassDB::bind_method(D_METHOD("pressHandler_takeLowest"), &UILogic::pressHandler_takeLowest);
 	ClassDB::bind_method(D_METHOD("pressHandler_total"), &UILogic::pressHandler_total);
 	
-	ADD_SIGNAL(MethodInfo("spawn_die", PropertyInfo(Variant::INT, "sides"), PropertyInfo(Variant::INT, "quantity")));
+	ADD_SIGNAL(MethodInfo("clear_dice"));
+	ADD_SIGNAL(MethodInfo("spawn_dice", PropertyInfo(Variant::INT, "sides"), PropertyInfo(Variant::INT, "quantity")));
 }
 
 void UILogic::_ready()
@@ -54,67 +55,92 @@ void UILogic::_ready()
 
 void UILogic::pressHandler_d4()
 {
-	UtilityFunctions::print("d4");
+	diceCounts[Dice::Four]++;
+	UtilityFunctions::print(diceCounts[Dice::Four], "d", Dice::Four);
 }
 
 void UILogic::pressHandler_d6()
 {
-	UtilityFunctions::print("d6");
-	emit_signal("spawn_die", 6, 2);
+	diceCounts[Dice::Six]++;
+	UtilityFunctions::print(diceCounts[Dice::Six], "d", Dice::Six);
 }
 
 void UILogic::pressHandler_d8()
 {
-	UtilityFunctions::print("d8");
-	emit_signal("spawn_die", 8, 6);
+	diceCounts[Dice::Eight]++;
+	UtilityFunctions::print(diceCounts[Dice::Eight], "d", Dice::Eight);
 }
 
 void UILogic::pressHandler_d10()
 {
-	UtilityFunctions::print("d10");
+	diceCounts[Dice::Ten]++;
+	UtilityFunctions::print(diceCounts[Dice::Ten], "d", Dice::Ten);
 }
 
 void UILogic::pressHandler_d12()
 {
-	UtilityFunctions::print("d12");
+	diceCounts[Dice::Twelve]++;
+	UtilityFunctions::print(diceCounts[Dice::Twelve], "d", Dice::Twelve);
 }
 
 void UILogic::pressHandler_d20()
 {
-	UtilityFunctions::print("d20");
+	diceCounts[Dice::Twenty]++;
+	UtilityFunctions::print(diceCounts[Dice::Twenty], "d", Dice::Twenty);
 }
 
 void UILogic::pressHandler_d100()
 {
-	UtilityFunctions::print("d100");
+	diceCounts[Dice::Hundred]++;
+	UtilityFunctions::print(diceCounts[Dice::Hundred], "d", Dice::Hundred);
 }
 
 void UILogic::pressHandler_average()
 {
 	UtilityFunctions::print("average");
+	spawnDice();
 }
 
 void UILogic::pressHandler_dropHighest()
 {
 	UtilityFunctions::print("drop highest");
+	spawnDice();
 }
 
 void UILogic::pressHandler_dropLowest()
 {
 	UtilityFunctions::print("drop lowest");
+	spawnDice();
 }
 
 void UILogic::pressHandler_takeHighest()
 {
 	UtilityFunctions::print("take highest");
+	spawnDice();
 }
 
 void UILogic::pressHandler_takeLowest()
 {
 	UtilityFunctions::print("take lowest");
+	spawnDice();
 }
 
 void UILogic::pressHandler_total()
 {
 	UtilityFunctions::print("total");
+	spawnDice();
+}
+
+void UILogic::spawnDice()
+{
+	emit_signal("clear_dice");
+	
+	UtilityFunctions::print("Spawning dice!");
+	for(std::map<int, int>::iterator it=diceCounts.begin(); it != diceCounts.end(); ++it)
+	{
+		UtilityFunctions::print("spawn: ", it->second, "d", it->first);
+		emit_signal("spawn_dice", it->first, it->second);
+	}
+	
+	diceCounts.clear();
 }
