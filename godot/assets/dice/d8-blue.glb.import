@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c7xewooba354n"
+uid="uid://civyv1uoglkeh"
 path="res://.godot/imported/d8-blue.glb-aaa1b1115ba615bdbbfeced4b61cb5d6.scn"
 
 [deps]
@@ -20,10 +20,10 @@ nodes/root_scale=1.0
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=3
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
