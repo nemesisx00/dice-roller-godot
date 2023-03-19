@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://djby0rwd1ns77"]
+
+[ext_resource type="PackedScene" uid="uid://c4w56i4ulunnr" path="res://assets/dice/d10.glb" id="1_dkb1k"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8lnit"]
+points = PackedVector3Array(0, 0.849, -1.182, 0.68, 0.849, 0.422, 0, 0.849, 0.8, -0.68, 0.849, 0.422, -1.1, 0.2, 0.333, -1.1, -0.2, -0.333, 1.1, -0.2, -0.333, 1.1, 0.2, 0.333, 0, -0.849, 1.182, 0.68, -0.849, -0.422, 0, -0.849, -0.8, -0.68, -0.849, -0.422)
+
+[node name="d10" type="DieNode"]
+Sides = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_8lnit")
+
+[node name="d10" parent="CollisionShape3D" instance=ExtResource("1_dkb1k")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="Sides" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Face1" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, -1, 0)
+Value = 1
+
+[node name="Face2" type="Direction" parent="Sides"]
+Endpoint = Vector3(-1, 0.5, -0.25)
+Value = 2
+
+[node name="Face3" type="Direction" parent="Sides"]
+Endpoint = Vector3(0.75, 0.5, 1.25)
+Value = 3
+
+[node name="Face4" type="Direction" parent="Sides"]
+Endpoint = Vector3(0.75, -0.5, -1.25)
+Value = 4
+
+[node name="Face5" type="Direction" parent="Sides"]
+Endpoint = Vector3(-0.75, 0.5, 1.25)
+Value = 5
+
+[node name="Face6" type="Direction" parent="Sides"]
+Endpoint = Vector3(-0.75, -0.5, -1.25)
+Value = 6
+
+[node name="Face7" type="Direction" parent="Sides"]
+Endpoint = Vector3(1.25, -0.75, 0.25)
+Value = 7
+
+[node name="Face8" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, 1, 0)
+Value = 8
+
+[node name="Face9" type="Direction" parent="Sides"]
+Endpoint = Vector3(-1.25, -0.75, 0.25)
+Value = 9
+
+[node name="Face10" type="Direction" parent="Sides"]
+Endpoint = Vector3(1, 0.5, -0.25)
+Value = 10
