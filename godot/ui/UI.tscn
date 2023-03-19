@@ -12,32 +12,38 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="UILogic" type="UILogic" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
+offset_right = 233.0
 
-[node name="DiceButtons" parent="." instance=ExtResource("1_fx36n")]
-unique_name_in_owner = true
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 515.0
-offset_right = 151.0
-offset_bottom = 638.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -123.0
+offset_right = 141.0
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_bottom = 25
 
-[node name="RollButtons" parent="." instance=ExtResource("2_ijud4")]
+[node name="DiceButtons" parent="MarginContainer" instance=ExtResource("1_fx36n")]
 unique_name_in_owner = true
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 909.0
-offset_top = 515.0
-offset_right = 1142.0
-offset_bottom = 638.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -233.0
+offset_top = -123.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="RollButtons" parent="MarginContainer2" instance=ExtResource("2_ijud4")]
+unique_name_in_owner = true
+layout_mode = 2
