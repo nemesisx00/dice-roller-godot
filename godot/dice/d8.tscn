@@ -13,7 +13,7 @@ physics_material_override = ExtResource("1_cycck")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_16xkg")
 
-[node name="d8" parent="CollisionShape3D" instance=ExtResource("2_b8u0k")]
+[node name="Mesh" parent="CollisionShape3D" instance=ExtResource("2_b8u0k")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="Sides" type="Node3D" parent="."]

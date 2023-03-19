@@ -13,7 +13,7 @@ physics_material_override = ExtResource("1_x5avo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_fye32")
 
-[node name="d6" parent="CollisionShape3D" instance=ExtResource("2_8kbo0")]
+[node name="Mesh" parent="CollisionShape3D" instance=ExtResource("2_8kbo0")]
 
 [node name="Sides" type="Node3D" parent="."]
 unique_name_in_owner = true
