@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmvkqh0bmugqr"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://ryb3n7msrcc2" path="res://dice/dice-physics.tres" id="1_rsqmb"]
+[ext_resource type="PackedScene" uid="uid://bhkyupaa1udoo" path="res://assets/dice/d20.glb" id="2_hm5gl"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3an7v"]
+points = PackedVector3Array(0.685, 1.035, 0.395, -0.685, 1.035, 0.395, 0, 1.035, -0.79, -0.685, -1.035, -0.395, 0.685, -1.035, -0.395, 0, -1.035, 0.79, 0, -0.244, -1.279, 0, 0.244, 1.279, 1.107, 0.244, -0.64, -1.107, -0.244, 0.64, 1.107, -0.244, 0.64, -1.107, 0.244, -0.64)
+
+[node name="d20" type="DieNode"]
+Sides = 20
+physics_material_override = ExtResource("1_rsqmb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_3an7v")
+
+[node name="Mesh" parent="CollisionShape3D" instance=ExtResource("2_hm5gl")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="Sides" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Face1" type="Direction" parent="Sides"]
+Endpoint = Vector3(-0.75, 1, -0.3)
+Value = 1
+
+[node name="Face2" type="Direction" parent="Sides"]
+Endpoint = Vector3(1.6, -0.5, -0.2)
+Value = 2
+
+[node name="Face3" type="Direction" parent="Sides"]
+Endpoint = Vector3(-0.75, 0.5, 1.25)
+Value = 3
+
+[node name="Face4" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, -1, -1)
+Value = 4
+
+[node name="Face5" type="Direction" parent="Sides"]
+Endpoint = Vector3(0.5, 0.5, -1.25)
+Value = 5
+
+[node name="Face6" type="Direction" parent="Sides"]
+Endpoint = Vector3(-1, -1, 0.55)
+Value = 6
+
+[node name="Face7" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, 1, 0)
+Value = 7
+
+[node name="Face8" type="Direction" parent="Sides"]
+Endpoint = Vector3(0.36, -0.3, 0.9)
+Value = 8
+
+[node name="Face9" type="Direction" parent="Sides"]
+Endpoint = Vector3(-1.6, -0.5, -0.2)
+Value = 9
+
+[node name="Face10" type="Direction" parent="Sides"]
+Endpoint = Vector3(0.75, 0.6, 0.9)
+Value = 10
+
+[node name="Face11" type="Direction" parent="Sides"]
+Endpoint = Vector3(-0.75, -0.4, -0.9)
+Value = 11
+
+[node name="Face12" type="Direction" parent="Sides"]
+Endpoint = Vector3(1.6, 0.5, 0.2)
+Value = 12
+
+[node name="Face13" type="Direction" parent="Sides"]
+Endpoint = Vector3(-0.36, 0.3, -0.9)
+Value = 13
+
+[node name="Face14" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, -1, 0)
+Value = 14
+
+[node name="Face15" type="Direction" parent="Sides"]
+Endpoint = Vector3(0.75, 1, -0.5)
+Value = 15
+
+[node name="Face16" type="Direction" parent="Sides"]
+Endpoint = Vector3(-0.5, -0.5, 1.25)
+Value = 16
+
+[node name="Face17" type="Direction" parent="Sides"]
+Endpoint = Vector3(0, 1, 1)
+Value = 17
+
+[node name="Face18" type="Direction" parent="Sides"]
+Endpoint = Vector3(1, -0.5, -1.25)
+Value = 18
+
+[node name="Face19" type="Direction" parent="Sides"]
+Endpoint = Vector3(-1.6, 0.5, 0.2)
+Value = 19
+
+[node name="Face20" type="Direction" parent="Sides"]
+Endpoint = Vector3(0.75, -1, 0.3)
+Value = 20
