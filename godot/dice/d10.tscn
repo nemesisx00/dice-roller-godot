@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://djby0rwd1ns77"]
+[gd_scene load_steps=4 format=3 uid="uid://djby0rwd1ns77"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://ryb3n7msrcc2" path="res://dice/dice-physics.tres" id="1_3act1"]
 [ext_resource type="PackedScene" uid="uid://c4w56i4ulunnr" path="res://assets/dice/d10.glb" id="1_dkb1k"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8lnit"]
@@ -7,11 +8,12 @@ points = PackedVector3Array(0, 0.849, -1.182, 0.68, 0.849, 0.422, 0, 0.849, 0.8,
 
 [node name="d10" type="DieNode"]
 Sides = 10
+physics_material_override = ExtResource("1_3act1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_8lnit")
 
-[node name="d10" parent="CollisionShape3D" instance=ExtResource("1_dkb1k")]
+[node name="Mesh" parent="CollisionShape3D" instance=ExtResource("1_dkb1k")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="Sides" type="Node3D" parent="."]
