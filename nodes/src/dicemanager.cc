@@ -99,7 +99,7 @@ void DiceManager::handleSpawnDice(const int sides, const int quantity = 1)
 			std::mt19937 gen(rd());
 			std::uniform_real_distribution<> pdist(-5, 5);
 			std::uniform_real_distribution<> rdist(-1.5, 1.5);
-			std::uniform_real_distribution<> fdist(-25, 25);
+			std::uniform_real_distribution<> fdist(-50, 50);
 			
 			Vector3 x(1, 0, 0);
 			Vector3 y(0, 1, 0);
@@ -108,7 +108,7 @@ void DiceManager::handleSpawnDice(const int sides, const int quantity = 1)
 			for(int i = 0; i < quantity; i++)
 			{
 				DieNode *die = Node::cast_to<DieNode>(resource->instantiate());
-				die->translate(Vector3(pdist(gen), 20, pdist(gen)));
+				die->translate(Vector3(pdist(gen), 15, pdist(gen)));
 				die->rotate_object_local(x, rdist(gen));
 				die->rotate_object_local(y, rdist(gen));
 				die->rotate_object_local(z, rdist(gen));
