@@ -6,7 +6,7 @@
 
 namespace godot
 {
-	enum Dice
+	enum DiceType
 	{
 		Four = 4,
 		Six = 6, 

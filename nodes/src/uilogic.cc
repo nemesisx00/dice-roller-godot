@@ -55,44 +55,44 @@ void UILogic::_ready()
 
 void UILogic::pressHandler_d4()
 {
-	diceCounts[Dice::Four]++;
-	UtilityFunctions::print(diceCounts[Dice::Four], "d", Dice::Four);
+	diceCounts[DiceType::Four]++;
+	UtilityFunctions::print(diceCounts[DiceType::Four], "d", DiceType::Four);
 }
 
 void UILogic::pressHandler_d6()
 {
-	diceCounts[Dice::Six]++;
-	UtilityFunctions::print(diceCounts[Dice::Six], "d", Dice::Six);
+	diceCounts[DiceType::Six]++;
+	UtilityFunctions::print(diceCounts[DiceType::Six], "d", DiceType::Six);
 }
 
 void UILogic::pressHandler_d8()
 {
-	diceCounts[Dice::Eight]++;
-	UtilityFunctions::print(diceCounts[Dice::Eight], "d", Dice::Eight);
+	diceCounts[DiceType::Eight]++;
+	UtilityFunctions::print(diceCounts[DiceType::Eight], "d", DiceType::Eight);
 }
 
 void UILogic::pressHandler_d10()
 {
-	diceCounts[Dice::Ten]++;
-	UtilityFunctions::print(diceCounts[Dice::Ten], "d", Dice::Ten);
+	diceCounts[DiceType::Ten]++;
+	UtilityFunctions::print(diceCounts[DiceType::Ten], "d", DiceType::Ten);
 }
 
 void UILogic::pressHandler_d12()
 {
-	diceCounts[Dice::Twelve]++;
-	UtilityFunctions::print(diceCounts[Dice::Twelve], "d", Dice::Twelve);
+	diceCounts[DiceType::Twelve]++;
+	UtilityFunctions::print(diceCounts[DiceType::Twelve], "d", DiceType::Twelve);
 }
 
 void UILogic::pressHandler_d20()
 {
-	diceCounts[Dice::Twenty]++;
-	UtilityFunctions::print(diceCounts[Dice::Twenty], "d", Dice::Twenty);
+	diceCounts[DiceType::Twenty]++;
+	UtilityFunctions::print(diceCounts[DiceType::Twenty], "d", DiceType::Twenty);
 }
 
 void UILogic::pressHandler_d100()
 {
-	diceCounts[Dice::Hundred]++;
-	UtilityFunctions::print(diceCounts[Dice::Hundred], "d", Dice::Hundred);
+	diceCounts[DiceType::Hundred]++;
+	UtilityFunctions::print(diceCounts[DiceType::Hundred], "d", DiceType::Hundred);
 }
 
 void UILogic::pressHandler_average()

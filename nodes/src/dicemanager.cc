@@ -70,11 +70,26 @@ void DiceManager::handleSpawnDice(const int sides, const int quantity = 1)
 		Ref<PackedScene> resource;
 		switch(sides)
 		{
-			case 6:
+			case DiceType::Four:
+				resource = ResourceLoader::get_singleton()->load("res://dice/d4.tscn");
+				break;
+			case DiceType::Six:
 				resource = ResourceLoader::get_singleton()->load("res://dice/d6.tscn");
 				break;
-			case 8:
+			case DiceType::Eight:
 				resource = ResourceLoader::get_singleton()->load("res://dice/d8.tscn");
+				break;
+			case DiceType::Ten:
+				resource = ResourceLoader::get_singleton()->load("res://dice/d10.tscn");
+				break;
+			case DiceType::Twelve:
+				resource = ResourceLoader::get_singleton()->load("res://dice/d12.tscn");
+				break;
+			case DiceType::Twenty:
+				resource = ResourceLoader::get_singleton()->load("res://dice/d20.tscn");
+				break;
+			case DiceType::Hundred:
+				resource = ResourceLoader::get_singleton()->load("res://dice/d100.tscn");
 				break;
 		}
 		
