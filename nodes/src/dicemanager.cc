@@ -77,7 +77,7 @@ void DiceManager::_ready()
 	
 	if(!isEditor)
 	{
-		UILogic *logic = get_parent()->get_node<UILogic>("UI/UILogic");
+		auto logic = get_parent()->get_node<UILogic>("UI/UILogic");
 		logic->connect("clear_dice", Callable(this, "handleClearDice"));
 		logic->connect("spawn_dice", Callable(this, "handleSpawnDice"));
 	}
@@ -85,8 +85,7 @@ void DiceManager::_ready()
 
 void DiceManager::handleAsleep(const uint64_t id)
 {
-	std::list<uint64_t>::iterator it;
-	it = std::find(nodeIds.begin(), nodeIds.end(), id);
+	auto it = std::find(nodeIds.begin(), nodeIds.end(), id);
 	
 	if(it != nodeIds.end())
 		nodeIds.erase(it);
@@ -97,11 +96,11 @@ void DiceManager::handleAsleep(const uint64_t id)
 
 void DiceManager::handleClearDice()
 {
-	TypedArray<Node> children = get_children();
-	int childrenSize = children.size();
-	for(int i = 0; i < childrenSize; i++)
+	auto children = get_children();
+	auto childrenSize = children.size();
+	for(int64_t i = 0; i < childrenSize; i++)
 	{
-		Node *node = Node::cast_to<Node>(children[i]);
+		auto node = Node::cast_to<Node>(children[i]);
 		node->queue_free();
 	}
 	nodeIds.clear();
@@ -159,7 +158,7 @@ void DiceManager::handleSpawnDice(const int sides, const int quantity = 1)
 			
 			for(int i = 0; i < quantity; i++)
 			{
-				DieNode *die = Node::cast_to<DieNode>(resource->instantiate());
+				auto die = Node::cast_to<DieNode>(resource->instantiate());
 				die->translate(Vector3(pos(gen), SpawnHeight, pos(gen)));
 				die->rotate_object_local(x, rot(gen));
 				die->rotate_object_local(y, rot(gen));
@@ -181,17 +180,17 @@ void DiceManager::handleSpawnDice(const int sides, const int quantity = 1)
 void DiceManager::processResults()
 {
 	std::map<int, std::vector<int>> diceValues;
-	TypedArray<Node> children = get_children();
-	int childrenSize = children.size();
-	for(int i = 0; i < childrenSize; i++)
+	auto children = get_children();
+	auto childrenSize = children.size();
+	for(int64_t i = 0; i < childrenSize; i++)
 	{
-		DieNode *die = Node::cast_to<DieNode>(children[i]);
+		auto die = Node::cast_to<DieNode>(children[i]);
 		diceValues[die->getSides()].push_back(die->getValue());
 	}
 	
-	for(std::map<int, std::vector<int>>::iterator it = diceValues.begin(); it != diceValues.end(); ++it)
+	for(auto pair : diceValues)
 	{
-		RollResult result(it->first, it->second);
+		RollResult result(pair.first, pair.second);
 		UtilityFunctions::print(result.values.size(), "d", result.sides, " Total: ", result.total);
 	}
 	

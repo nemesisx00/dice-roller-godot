@@ -14,14 +14,11 @@ struct RollResult
 		std::copy(values.begin(), values.end(), sorted.begin());
 		std::sort(sorted.begin(), sorted.end(), std::less<int>());
 		
-		int total = 0;
-		int sortedSize = sorted.size();
-		for(int i = 0; i < sortedSize; i++)
-		{
-			total += sorted[i];
-		}
+		auto total = 0;
+		for(auto val : sorted)
+			total += val;
 		
-		this->average = std::round(total / sortedSize);
+		this->average = std::round(total / sorted.size());
 		this->highest = sorted.back();
 		this->lowest = sorted.front();
 		this->sides = sides;

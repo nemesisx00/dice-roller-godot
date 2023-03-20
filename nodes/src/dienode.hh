@@ -27,8 +27,14 @@ namespace godot
 			int getValue() const;
 			void handleSleepingStateChange();
 			
+			NodePath getDisplayValue() const { return DisplayValuePath; }
+			void setDisplayValue(const NodePath path) { DisplayValuePath = path; }
+			
 			int getSides() const { return Sides; };
 			void setSides(const int sides) { Sides = sides; }
+			
+			NodePath getSidesPath() const { return SidesPath; }
+			void setSidesPath(const NodePath path) { SidesPath = path; }
 		
 		protected:
 			static void _bind_methods();
@@ -37,6 +43,8 @@ namespace godot
 			bool isEditor;
 			
 			int Sides;
+			NodePath SidesPath = "%Sides";
+			NodePath DisplayValuePath = "%DisplayValue";
 			
 			DieNode() = default;
 			~DieNode() = default;

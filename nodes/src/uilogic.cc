@@ -53,81 +53,41 @@ void UILogic::_ready()
 	}
 }
 
-void UILogic::pressHandler_d4()
-{
-	diceCounts[DiceType::Four]++;
-	UtilityFunctions::print(diceCounts[DiceType::Four], "d", DiceType::Four);
-}
-
-void UILogic::pressHandler_d6()
-{
-	diceCounts[DiceType::Six]++;
-	UtilityFunctions::print(diceCounts[DiceType::Six], "d", DiceType::Six);
-}
-
-void UILogic::pressHandler_d8()
-{
-	diceCounts[DiceType::Eight]++;
-	UtilityFunctions::print(diceCounts[DiceType::Eight], "d", DiceType::Eight);
-}
-
-void UILogic::pressHandler_d10()
-{
-	diceCounts[DiceType::Ten]++;
-	UtilityFunctions::print(diceCounts[DiceType::Ten], "d", DiceType::Ten);
-}
-
-void UILogic::pressHandler_d12()
-{
-	diceCounts[DiceType::Twelve]++;
-	UtilityFunctions::print(diceCounts[DiceType::Twelve], "d", DiceType::Twelve);
-}
-
-void UILogic::pressHandler_d20()
-{
-	diceCounts[DiceType::Twenty]++;
-	UtilityFunctions::print(diceCounts[DiceType::Twenty], "d", DiceType::Twenty);
-}
-
-void UILogic::pressHandler_d100()
-{
-	diceCounts[DiceType::Hundred]++;
-	UtilityFunctions::print(diceCounts[DiceType::Hundred], "d", DiceType::Hundred);
-}
+void UILogic::pressHandler_d4() { diceCounts[DiceType::Four]++; }
+void UILogic::pressHandler_d6() { diceCounts[DiceType::Six]++; }
+void UILogic::pressHandler_d8() { diceCounts[DiceType::Eight]++; }
+void UILogic::pressHandler_d10() { diceCounts[DiceType::Ten]++; }
+void UILogic::pressHandler_d12() { diceCounts[DiceType::Twelve]++; }
+void UILogic::pressHandler_d20() { diceCounts[DiceType::Twenty]++; }
+void UILogic::pressHandler_d100() { diceCounts[DiceType::Hundred]++; }
 
 void UILogic::pressHandler_average()
 {
-	UtilityFunctions::print("average");
 	spawnDice();
 }
 
 void UILogic::pressHandler_dropHighest()
 {
-	UtilityFunctions::print("drop highest");
 	spawnDice();
 }
 
 void UILogic::pressHandler_dropLowest()
 {
-	UtilityFunctions::print("drop lowest");
 	spawnDice();
 }
 
 void UILogic::pressHandler_takeHighest()
 {
-	UtilityFunctions::print("take highest");
 	spawnDice();
 }
 
 void UILogic::pressHandler_takeLowest()
 {
-	UtilityFunctions::print("take lowest");
 	spawnDice();
 }
 
 void UILogic::pressHandler_total()
 {
-	UtilityFunctions::print("total");
 	spawnDice();
 }
 
@@ -136,10 +96,9 @@ void UILogic::spawnDice()
 	emit_signal("clear_dice");
 	
 	UtilityFunctions::print("Spawning dice!");
-	for(std::map<int, int>::iterator it=diceCounts.begin(); it != diceCounts.end(); ++it)
+	for(auto pair : diceCounts)
 	{
-		UtilityFunctions::print("spawn: ", it->second, "d", it->first);
-		emit_signal("spawn_dice", it->first, it->second);
+		emit_signal("spawn_dice", pair.first, pair.second);
 	}
 	
 	diceCounts.clear();

@@ -23,7 +23,7 @@ namespace godot
 		
 		private:
 			Vector3 Endpoint;
-			int Value;
+			int Value = 0;
 			
 			Direction() = default;
 			~Direction() = default;
