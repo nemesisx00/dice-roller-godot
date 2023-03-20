@@ -5,6 +5,7 @@
 #include <dienode.hh>
 #include <direction.hh>
 #include <hellocpp.hh>
+#include <mainmenu.hh>
 #include <uilogic.hh>
 
 using namespace godot;
@@ -17,6 +18,7 @@ void registerNodes(godot::ModuleInitializationLevel p_level)
 		ClassDB::register_class<DieNode>();
 		ClassDB::register_class<Direction>();
 		ClassDB::register_class<HelloCpp>();
+		ClassDB::register_class<MainMenu>();
 		ClassDB::register_class<UILogic>();
 	}
 }
