@@ -8,6 +8,9 @@ points = PackedVector3Array(1.005, 0.82, 0.58, -1.005, 0.82, 0.58, 0, 0.82, -1.1
 
 [node name="d8" type="DieNode"]
 Sides = 8
+collision_layer = 2
+collision_mask = 3
+mass = 25.0
 physics_material_override = ExtResource("1_cycck")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -15,6 +18,13 @@ shape = SubResource("ConvexPolygonShape3D_16xkg")
 
 [node name="Mesh" parent="CollisionShape3D" instance=ExtResource("2_b8u0k")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="DisplayValue" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+top_level = true
+visible = false
+font_size = 512
 
 [node name="Sides" type="Node3D" parent="."]
 unique_name_in_owner = true
