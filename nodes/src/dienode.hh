@@ -40,6 +40,7 @@ namespace godot
 			
 			DieNode() = default;
 			~DieNode() = default;
+			void updateDisplayLabel();
 	};
 }
 

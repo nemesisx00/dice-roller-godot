@@ -1,7 +1,11 @@
 #include <dienode.hh>
 
 #include <godot_cpp/classes/engine.hpp>
+#include <godot_cpp/classes/label3d.hpp>
+#include <godot_cpp/variant/array.hpp>
+#include <godot_cpp/variant/transform3d.hpp>
 #include <direction.hh>
+#include <string>
 
 using namespace godot;
 
@@ -48,5 +52,26 @@ int DieNode::getValue() const
 void DieNode::handleSleepingStateChange()
 {
 	if(is_sleeping())
+	{
+		updateDisplayLabel();
 		emit_signal("asleep", get_instance_id());
+	}
+}
+
+void DieNode::updateDisplayLabel()
+{
+	Label3D *label = get_node<Label3D>("%DisplayValue");
+	
+	Array params;
+	int value = getValue();
+	if(value > 0)
+		params.push_front(value);
+	else
+		params.push_front("?");
+	
+	String valueFormat("{0}");
+	label->set_text(valueFormat.format(params));
+	label->set_global_position(get_global_position() + Vector3(0, 3, 0));
+	label->set_global_rotation(Vector3(-1.5, 0, 0));
+	label->show();
 }
