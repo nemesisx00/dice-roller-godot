@@ -1,9 +1,12 @@
 #include <dienode.hh>
 
+#include <errno.h>
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/label3d.hpp>
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/transform3d.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/core/math.hpp>
 #include <string>
 
 #include <direction.hh>
@@ -42,16 +45,29 @@ int DieNode::getValue() const
 {
 	int value = -1;
 	
+	Vector3 zero;
 	Vector3 up(0, 1, 0);
+	real_t biggest = -1;
+	
 	auto children = get_node<Node3D>(SidesPath)->get_children();
 	auto childrenSize = children.size();
 	for(int64_t i = 0; i < childrenSize; i++)
 	{
 		auto child = Node::cast_to<Direction>(children[i]);
+		
 		if(child->getDirectionUnit() == up)
 		{
 			value = child->getValue();
 			break;
+		}
+		else
+		{
+			auto dotProduct = child->getDirection().dot(up);
+			if(dotProduct > biggest)
+			{
+				biggest = dotProduct;
+				value = child->getValue();
+			}
 		}
 	}
 	

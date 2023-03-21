@@ -10,6 +10,7 @@ namespace godot
 		GDCLASS(Direction, Node3D)
 		
 		public:
+			Vector3 getDirection() const;
 			Vector3 getDirectionUnit() const;
 			
 			Vector3 getEndpoint() const { return Endpoint; }
