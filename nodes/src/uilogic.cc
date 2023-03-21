@@ -1,10 +1,14 @@
+#include <godot_cpp/classes/global_constants.hpp>
 #include <uilogic.hh>
 
 #include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/engine.hpp>
+#include <godot_cpp/classes/input.hpp>
+#include <godot_cpp/classes/input_event_mouse_button.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/variant/callable.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp//variant/dictionary.hpp>
 #include <dienode.hh>
 
 using namespace godot;
@@ -26,8 +30,9 @@ void UILogic::_bind_methods()
 	ClassDB::bind_method(D_METHOD("pressHandler_takeLowest"), &UILogic::pressHandler_takeLowest);
 	ClassDB::bind_method(D_METHOD("pressHandler_total"), &UILogic::pressHandler_total);
 	
-	ADD_SIGNAL(MethodInfo("clear_dice"));
-	ADD_SIGNAL(MethodInfo("spawn_dice", PropertyInfo(Variant::INT, "sides"), PropertyInfo(Variant::INT, "quantity")));
+	ADD_SIGNAL(MethodInfo("ClearDice"));
+	ADD_SIGNAL(MethodInfo("UpdateEquation", PropertyInfo(Variant::DICTIONARY, "diceRoles")));
+	ADD_SIGNAL(MethodInfo("SpawnDice", PropertyInfo(Variant::INT, "sides"), PropertyInfo(Variant::INT, "quantity")));
 }
 
 void UILogic::_ready()
@@ -36,13 +41,13 @@ void UILogic::_ready()
 	
 	if(!isEditor)
 	{
-		get_node<Button>("%DiceButtons/%d4")->connect("pressed", Callable(this, "pressHandler_d4"));
-		get_node<Button>("%DiceButtons/%d6")->connect("pressed", Callable(this, "pressHandler_d6"));
-		get_node<Button>("%DiceButtons/%d8")->connect("pressed", Callable(this, "pressHandler_d8"));
-		get_node<Button>("%DiceButtons/%d10")->connect("pressed", Callable(this, "pressHandler_d10"));
-		get_node<Button>("%DiceButtons/%d12")->connect("pressed", Callable(this, "pressHandler_d12"));
-		get_node<Button>("%DiceButtons/%d20")->connect("pressed", Callable(this, "pressHandler_d20"));
-		get_node<Button>("%DiceButtons/%d100")->connect("pressed", Callable(this, "pressHandler_d100"));
+		get_node<Button>("%DiceButtons/%d4")->connect("gui_input", Callable(this, "pressHandler_d4"));
+		get_node<Button>("%DiceButtons/%d6")->connect("gui_input", Callable(this, "pressHandler_d6"));
+		get_node<Button>("%DiceButtons/%d8")->connect("gui_input", Callable(this, "pressHandler_d8"));
+		get_node<Button>("%DiceButtons/%d10")->connect("gui_input", Callable(this, "pressHandler_d10"));
+		get_node<Button>("%DiceButtons/%d12")->connect("gui_input", Callable(this, "pressHandler_d12"));
+		get_node<Button>("%DiceButtons/%d20")->connect("gui_input", Callable(this, "pressHandler_d20"));
+		get_node<Button>("%DiceButtons/%d100")->connect("gui_input", Callable(this, "pressHandler_d100"));
 		
 		get_node<Button>("%RollButtons/%Average")->connect("pressed", Callable(this, "pressHandler_average"));
 		get_node<Button>("%RollButtons/%DropHighest")->connect("pressed", Callable(this, "pressHandler_dropHighest"));
@@ -53,53 +58,59 @@ void UILogic::_ready()
 	}
 }
 
-void UILogic::pressHandler_d4() { diceCounts[DiceType::Four]++; }
-void UILogic::pressHandler_d6() { diceCounts[DiceType::Six]++; }
-void UILogic::pressHandler_d8() { diceCounts[DiceType::Eight]++; }
-void UILogic::pressHandler_d10() { diceCounts[DiceType::Ten]++; }
-void UILogic::pressHandler_d12() { diceCounts[DiceType::Twelve]++; }
-void UILogic::pressHandler_d20() { diceCounts[DiceType::Twenty]++; }
-void UILogic::pressHandler_d100() { diceCounts[DiceType::Hundred]++; }
-
-void UILogic::pressHandler_average()
+void UILogic::dicePressHandler(const int sides, const Ref<InputEvent> event)
 {
-	spawnDice();
+	if(event.is_valid() && event->is_class("InputEventMouseButton"))
+	{
+		auto e = (Ref<InputEventMouseButton>)event;
+		if(e->is_pressed())
+			updateEquation(sides, e->get_button_index() == MOUSE_BUTTON_RIGHT);
+	}
 }
 
-void UILogic::pressHandler_dropHighest()
-{
-	spawnDice();
-}
+void UILogic::pressHandler_d4(const Ref<InputEvent> event) { dicePressHandler(DiceType::Four, event); }
+void UILogic::pressHandler_d6(const Ref<InputEvent> event) { dicePressHandler(DiceType::Six, event); }
+void UILogic::pressHandler_d8(const Ref<InputEvent> event) { dicePressHandler(DiceType::Eight, event); }
+void UILogic::pressHandler_d10(const Ref<InputEvent> event) { dicePressHandler(DiceType::Ten, event); }
+void UILogic::pressHandler_d12(const Ref<InputEvent> event) { dicePressHandler(DiceType::Twelve, event); }
+void UILogic::pressHandler_d20(const Ref<InputEvent> event) { dicePressHandler(DiceType::Twenty, event); }
+void UILogic::pressHandler_d100(const Ref<InputEvent> event) { dicePressHandler(DiceType::Hundred, event); }
 
-void UILogic::pressHandler_dropLowest()
-{
-	spawnDice();
-}
-
-void UILogic::pressHandler_takeHighest()
-{
-	spawnDice();
-}
-
-void UILogic::pressHandler_takeLowest()
-{
-	spawnDice();
-}
-
-void UILogic::pressHandler_total()
-{
-	spawnDice();
-}
+void UILogic::pressHandler_average() { spawnDice(); }
+void UILogic::pressHandler_dropHighest() { spawnDice(); }
+void UILogic::pressHandler_dropLowest() { spawnDice(); }
+void UILogic::pressHandler_takeHighest() { spawnDice(); }
+void UILogic::pressHandler_takeLowest() { spawnDice(); }
+void UILogic::pressHandler_total() { spawnDice(); }
 
 void UILogic::spawnDice()
 {
-	emit_signal("clear_dice");
+	emit_signal("ClearDice");
 	
 	UtilityFunctions::print("Spawning dice!");
 	for(auto pair : diceCounts)
 	{
-		emit_signal("spawn_dice", pair.first, pair.second);
+		emit_signal("SpawnDice", pair.first, pair.second);
 	}
 	
 	diceCounts.clear();
+}
+
+void UILogic::updateEquation(const int sides, const bool reduce)
+{
+	if(reduce)
+		diceCounts[sides]--;
+	else
+		diceCounts[sides]++;
+	
+	if(diceCounts[sides] < 1)
+		diceCounts.erase(sides);
+	
+	Dictionary dict;
+	for(auto pair : diceCounts)
+	{
+		dict[pair.first] = pair.second;
+	}
+	
+	emit_signal("UpdateEquation", dict);
 }

@@ -13,13 +13,13 @@ namespace godot
 		public:
 			void _ready() override;
 			
-			void pressHandler_d4();
-			void pressHandler_d6();
-			void pressHandler_d8();
-			void pressHandler_d10();
-			void pressHandler_d12();
-			void pressHandler_d20();
-			void pressHandler_d100();
+			void pressHandler_d4(const Ref<InputEvent> event);
+			void pressHandler_d6(const Ref<InputEvent> event);
+			void pressHandler_d8(const Ref<InputEvent> event);
+			void pressHandler_d10(const Ref<InputEvent> event);
+			void pressHandler_d12(const Ref<InputEvent> event);
+			void pressHandler_d20(const Ref<InputEvent> event);
+			void pressHandler_d100(const Ref<InputEvent> event);
 			
 			void pressHandler_average();
 			void pressHandler_dropHighest();
@@ -37,6 +37,8 @@ namespace godot
 			
 			UILogic() = default;
 			~UILogic() = default;
+			void dicePressHandler(const int sides, const Ref<InputEvent> event);
+			void updateEquation(const int sides, const bool reduce);
 			void spawnDice();
 	};
 }
