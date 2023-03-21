@@ -30,6 +30,12 @@ namespace godot
 			NodePath getDisplayValue() const { return DisplayValuePath; }
 			void setDisplayValue(const NodePath path) { DisplayValuePath = path; }
 			
+			bool getDisplayValueLabel() const { return DisplayValueLabel; }
+			void setDisplayValueLabel(const bool display) { DisplayValueLabel = display; }
+			
+			bool getGuessNotFlat() const { return GuessNotFlat; }
+			void setGuessNotFlat(const bool guess) { GuessNotFlat = guess; }
+			
 			int getSides() const { return Sides; };
 			void setSides(const int sides) { Sides = sides; }
 			
@@ -42,6 +48,8 @@ namespace godot
 		private:
 			bool isEditor;
 			
+			bool DisplayValueLabel = true;
+			bool GuessNotFlat = true;
 			int Sides;
 			NodePath SidesPath = "%Sides";
 			NodePath DisplayValuePath = "%DisplayValue";

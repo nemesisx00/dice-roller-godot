@@ -26,6 +26,16 @@ void DiceManager::_bind_methods()
 	
 	ADD_SIGNAL(MethodInfo("roll_completed"));
 	
+	ClassDB::add_property_group("DiceManager", "Dice Properties", "");
+	
+	ClassDB::bind_method(D_METHOD("getDisplayValueLabel"), &DiceManager::getDisplayValueLabel);
+	ClassDB::bind_method(D_METHOD("setDisplayValueLabel", "p_display"), &DiceManager::setDisplayValueLabel);
+	ClassDB::add_property("DiceManager", PropertyInfo(Variant::BOOL, "Display 3D Dice Values"), "setDisplayValueLabel", "getDisplayValueLabel");
+	
+	ClassDB::bind_method(D_METHOD("getGuessNotFlat"), &DiceManager::getGuessNotFlat);
+	ClassDB::bind_method(D_METHOD("setGuessNotFlat", "p_guess"), &DiceManager::setGuessNotFlat);
+	ClassDB::add_property("DiceManager", PropertyInfo(Variant::BOOL, "Guess When Dice Not Flat"), "setGuessNotFlat", "getGuessNotFlat");
+	
 	ClassDB::add_property_group("DiceManager", "Impulse at Spawn", "");
 	
 	ClassDB::bind_method(D_METHOD("getGroupImpulse"), &DiceManager::getGroupImpulse);
@@ -159,11 +169,17 @@ void DiceManager::handleSpawnDice(const int sides, const int quantity = 1)
 			for(int i = 0; i < quantity; i++)
 			{
 				auto die = Node::cast_to<DieNode>(resource->instantiate());
+				
+				die->setDisplayValueLabel(DisplayValueLabel);
+				die->setGuessNotFlat(GuessNotFlat);
+				
 				die->translate(Vector3(pos(gen), SpawnHeight, pos(gen)));
 				die->rotate_object_local(x, rot(gen));
 				die->rotate_object_local(y, rot(gen));
 				die->rotate_object_local(z, rot(gen));
+				
 				die->connect("asleep", Callable(this, "handleAsleep"));
+				
 				nodeIds.push_back(die->get_instance_id());
 				
 				add_child(die);

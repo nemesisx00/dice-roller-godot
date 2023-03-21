@@ -16,6 +16,9 @@ namespace godot
 			void handleClearDice();
 			void handleSpawnDice(const int sides, const int quantity);
 			
+			bool getDisplayValueLabel() const { return DisplayValueLabel; }
+			void setDisplayValueLabel(const bool display) { DisplayValueLabel = display; }
+			
 			float_t getDownforceMax() const { return DownforceMax; }
 			void setDownforceMax(const float_t max) { DownforceMax = max; }
 			
@@ -27,6 +30,9 @@ namespace godot
 			
 			float_t getForceMin() const { return ForceMin; }
 			void setForceMin(const float_t min) { ForceMin = min; }
+			
+			bool getGuessNotFlat() const { return GuessNotFlat; }
+			void setGuessNotFlat(const bool guess) { GuessNotFlat = guess; }
 			
 			bool getGroupImpulse() const { return GroupImpulse; }
 			void setGroupImpulse(const bool group) { GroupImpulse = group; }
@@ -53,10 +59,12 @@ namespace godot
 			bool isEditor;
 			std::list<uint64_t> nodeIds;
 			
+			bool DisplayValueLabel = true;
 			float_t DownforceMax = -1;
 			float_t DownforceMin = -5;
 			float_t ForceMax = 50;
 			float_t ForceMin = -50;
+			bool GuessNotFlat = true;
 			bool GroupImpulse = true;
 			float_t PositionMax = 15;
 			float_t PositionMin = -15;

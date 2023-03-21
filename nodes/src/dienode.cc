@@ -2,6 +2,7 @@
 
 #include <errno.h>
 #include <godot_cpp/classes/engine.hpp>
+#include <godot_cpp/classes/environment.hpp>
 #include <godot_cpp/classes/label3d.hpp>
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/transform3d.hpp>
@@ -21,6 +22,14 @@ void DieNode::_bind_methods()
 	ClassDB::bind_method(D_METHOD("getDisplayValue"), &DieNode::getDisplayValue);
 	ClassDB::bind_method(D_METHOD("setDisplayValue", "p_path"), &DieNode::setDisplayValue);
 	ClassDB::add_property("DieNode", PropertyInfo(Variant::NODE_PATH, "Display Value Node"), "setDisplayValue", "getDisplayValue");
+	
+	ClassDB::bind_method(D_METHOD("getDisplayValueLabel"), &DieNode::getDisplayValueLabel);
+	ClassDB::bind_method(D_METHOD("setDisplayValueLabel", "p_display"), &DieNode::setDisplayValueLabel);
+	ClassDB::add_property("DieNode", PropertyInfo(Variant::BOOL, "Display 3D Value"), "setDisplayValueLabel", "getDisplayValueLabel");
+	
+	ClassDB::bind_method(D_METHOD("getGuessNotFlat"), &DieNode::getGuessNotFlat);
+	ClassDB::bind_method(D_METHOD("setGuessNotFlat", "p_guess"), &DieNode::setGuessNotFlat);
+	ClassDB::add_property("DieNode", PropertyInfo(Variant::BOOL, "Guess When Not Flat"), "setGuessNotFlat", "getGuessNotFlat");
 	
 	ClassDB::bind_method(D_METHOD("getSides"), &DieNode::getSides);
 	ClassDB::bind_method(D_METHOD("setSides", "p_sides"), &DieNode::setSides);
@@ -55,12 +64,12 @@ int DieNode::getValue() const
 	{
 		auto child = Node::cast_to<Direction>(children[i]);
 		
-		if(child->getDirectionUnit() == up)
+		if(child->getDirectionUnit() == up || (!GuessNotFlat && child->getDirectionUnit().round() == up))
 		{
 			value = child->getValue();
 			break;
 		}
-		else
+		else if(GuessNotFlat)
 		{
 			auto dotProduct = child->getDirection().dot(up);
 			if(dotProduct > biggest)
@@ -78,7 +87,8 @@ void DieNode::handleSleepingStateChange()
 {
 	if(is_sleeping())
 	{
-		updateDisplayLabel();
+		if(DisplayValueLabel)
+			updateDisplayLabel();
 		emit_signal("asleep", get_instance_id());
 	}
 }
