@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq5n20yifaxto"]
+[gd_scene load_steps=7 format=3 uid="uid://dq5n20yifaxto"]
 
 [ext_resource type="PackedScene" uid="uid://bud6ekkcpcpcj" path="res://ui/DiceButtons.tscn" id="1_fx36n"]
 [ext_resource type="PackedScene" uid="uid://fwxkyfry7ek4" path="res://ui/RollButtons.tscn" id="2_ijud4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ho5o5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hjjq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_epjpm"]
+
+[sub_resource type="Theme" id="Theme_r4ssx"]
+TextEdit/colors/font_readonly_color = Color(0.87451, 0.87451, 0.87451, 1)
+TextEdit/fonts/font = null
+TextEdit/styles/focus = SubResource("StyleBoxEmpty_ho5o5")
+TextEdit/styles/normal = SubResource("StyleBoxEmpty_4hjjq")
+TextEdit/styles/read_only = SubResource("StyleBoxEmpty_epjpm")
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -15,7 +28,33 @@ grow_vertical = 2
 layout_mode = 2
 offset_right = 233.0
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer1" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 250.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 25
+
+[node name="DiceEquation" type="DiceEquation" parent="MarginContainer1"]
+layout_mode = 2
+tooltip_text = "Equation"
+mouse_default_cursor_shape = 0
+theme = SubResource("Theme_r4ssx")
+editable = false
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -207.0
+offset_bottom = 308.0
+grow_horizontal = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -26,24 +65,24 @@ grow_vertical = 0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="DiceButtons" parent="MarginContainer" instance=ExtResource("1_fx36n")]
+[node name="DiceButtons" parent="MarginContainer3" instance=ExtResource("1_fx36n")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="MarginContainer4" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -233.0
-offset_top = -123.0
+offset_left = -141.0
+offset_top = -286.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="RollButtons" parent="MarginContainer2" instance=ExtResource("2_ijud4")]
+[node name="RollButtons" parent="MarginContainer4" instance=ExtResource("2_ijud4")]
 unique_name_in_owner = true
 layout_mode = 2
