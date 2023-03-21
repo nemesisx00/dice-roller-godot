@@ -4,8 +4,8 @@
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/image.hpp>
 #include <godot_cpp/classes/node.hpp>
-#include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/packed_scene.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/variant/callable.hpp>
 #include <godot_cpp/variant/node_path.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
@@ -78,8 +78,8 @@ void DiceManager::_ready()
 	if(!isEditor)
 	{
 		auto logic = get_parent()->get_node<UILogic>("UI/UILogic");
-		logic->connect("clear_dice", Callable(this, "handleClearDice"));
-		logic->connect("spawn_dice", Callable(this, "handleSpawnDice"));
+		logic->connect("ClearDice", Callable(this, "handleClearDice"));
+		logic->connect("SpawnDice", Callable(this, "handleSpawnDice"));
 	}
 }
 
