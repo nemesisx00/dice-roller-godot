@@ -1,11 +1,13 @@
-#include <godot_cpp/classes/global_constants.hpp>
+#include <godot_cpp/core/property_info.hpp>
 #include <uilogic.hh>
 
 #include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/input.hpp>
 #include <godot_cpp/classes/input_event_mouse_button.hpp>
+#include <godot_cpp/classes/global_constants.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
+#include <godot_cpp/classes/check_button.hpp>
 #include <godot_cpp/variant/callable.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 #include <godot_cpp//variant/dictionary.hpp>
@@ -23,16 +25,25 @@ void UILogic::_bind_methods()
 	ClassDB::bind_method(D_METHOD("pressHandler_d20"), &UILogic::pressHandler_d20);
 	ClassDB::bind_method(D_METHOD("pressHandler_d100"), &UILogic::pressHandler_d100);
 	
-	ClassDB::bind_method(D_METHOD("pressHandler_average"), &UILogic::pressHandler_average);
-	ClassDB::bind_method(D_METHOD("pressHandler_dropHighest"), &UILogic::pressHandler_dropHighest);
-	ClassDB::bind_method(D_METHOD("pressHandler_dropLowest"), &UILogic::pressHandler_dropLowest);
-	ClassDB::bind_method(D_METHOD("pressHandler_takeHighest"), &UILogic::pressHandler_takeHighest);
-	ClassDB::bind_method(D_METHOD("pressHandler_takeLowest"), &UILogic::pressHandler_takeLowest);
-	ClassDB::bind_method(D_METHOD("pressHandler_total"), &UILogic::pressHandler_total);
+	ClassDB::bind_method(D_METHOD("pressHandler_roll"), &UILogic::pressHandler_roll);
+	
+	ClassDB::bind_method(D_METHOD("toggleDropHighest", "p_pressed"), &UILogic::toggleDropHighest);
+	ClassDB::bind_method(D_METHOD("toggleDropLowest", "p_pressed"), &UILogic::toggleDropLowest);
+	ClassDB::bind_method(D_METHOD("toggleTakeHighest", "p_pressed"), &UILogic::toggleTakeHighest);
+	ClassDB::bind_method(D_METHOD("toggleTakeLowest", "p_pressed"), &UILogic::toggleTakeLowest);
+	ClassDB::bind_method(D_METHOD("toggleTotal", "p_pressed"), &UILogic::toggleTotal);
+	ClassDB::bind_method(D_METHOD("toggleValues", "p_pressed"), &UILogic::toggleValues);
 	
 	ADD_SIGNAL(MethodInfo("ClearDice"));
 	ADD_SIGNAL(MethodInfo("UpdateEquation", PropertyInfo(Variant::DICTIONARY, "diceRoles")));
 	ADD_SIGNAL(MethodInfo("SpawnDice", PropertyInfo(Variant::INT, "sides"), PropertyInfo(Variant::INT, "quantity")));
+	
+	ADD_SIGNAL(MethodInfo("SetVisibility_DropHighest", PropertyInfo(Variant::BOOL, "pressed")));
+	ADD_SIGNAL(MethodInfo("SetVisibility_DropLowest", PropertyInfo(Variant::BOOL, "pressed")));
+	ADD_SIGNAL(MethodInfo("SetVisibility_TakeHighest", PropertyInfo(Variant::BOOL, "pressed")));
+	ADD_SIGNAL(MethodInfo("SetVisibility_TakeLowest", PropertyInfo(Variant::BOOL, "pressed")));
+	ADD_SIGNAL(MethodInfo("SetVisibility_Total", PropertyInfo(Variant::BOOL, "pressed")));
+	ADD_SIGNAL(MethodInfo("SetVisibility_Values", PropertyInfo(Variant::BOOL, "pressed")));
 }
 
 void UILogic::_ready()
@@ -49,12 +60,14 @@ void UILogic::_ready()
 		get_node<Button>("%DiceButtons/%d20")->connect("gui_input", Callable(this, "pressHandler_d20"));
 		get_node<Button>("%DiceButtons/%d100")->connect("gui_input", Callable(this, "pressHandler_d100"));
 		
-		get_node<Button>("%RollButtons/%Average")->connect("pressed", Callable(this, "pressHandler_average"));
-		get_node<Button>("%RollButtons/%DropHighest")->connect("pressed", Callable(this, "pressHandler_dropHighest"));
-		get_node<Button>("%RollButtons/%DropLowest")->connect("pressed", Callable(this, "pressHandler_dropLowest"));
-		get_node<Button>("%RollButtons/%TakeHighest")->connect("pressed", Callable(this, "pressHandler_takeHighest"));
-		get_node<Button>("%RollButtons/%TakeLowest")->connect("pressed", Callable(this, "pressHandler_takeLowest"));
-		get_node<Button>("%RollButtons/%Total")->connect("pressed", Callable(this, "pressHandler_total"));
+		get_node<Button>("%Roll")->connect("pressed", Callable(this, "pressHandler_roll"));
+		
+		get_node<CheckButton>("%DropHighestButton")->connect("toggled", Callable(this, "toggleDropHighest"));
+		get_node<CheckButton>("%DropLowestButton")->connect("toggled", Callable(this, "toggleDropLowest"));
+		get_node<CheckButton>("%TakeHighestButton")->connect("toggled", Callable(this, "toggleTakeHighest"));
+		get_node<CheckButton>("%TakeLowestButton")->connect("toggled", Callable(this, "toggleTakeLowest"));
+		get_node<CheckButton>("%TotalButton")->connect("toggled", Callable(this, "toggleTotal"));
+		get_node<CheckButton>("%ValuesButton")->connect("toggled", Callable(this, "toggleValues"));
 	}
 }
 
@@ -76,12 +89,14 @@ void UILogic::pressHandler_d12(const Ref<InputEvent> event) { dicePressHandler(D
 void UILogic::pressHandler_d20(const Ref<InputEvent> event) { dicePressHandler(DiceType::Twenty, event); }
 void UILogic::pressHandler_d100(const Ref<InputEvent> event) { dicePressHandler(DiceType::Hundred, event); }
 
-void UILogic::pressHandler_average() { spawnDice(); }
-void UILogic::pressHandler_dropHighest() { spawnDice(); }
-void UILogic::pressHandler_dropLowest() { spawnDice(); }
-void UILogic::pressHandler_takeHighest() { spawnDice(); }
-void UILogic::pressHandler_takeLowest() { spawnDice(); }
-void UILogic::pressHandler_total() { spawnDice(); }
+void UILogic::pressHandler_roll() { spawnDice(); }
+
+void UILogic::toggleDropHighest(const bool pressed) { emit_signal("SetVisibility_DropHighest", pressed); }
+void UILogic::toggleDropLowest(const bool pressed) { emit_signal("SetVisibility_DropLowest", pressed); }
+void UILogic::toggleTakeHighest(const bool pressed) { emit_signal("SetVisibility_TakeHighest", pressed); }
+void UILogic::toggleTakeLowest(const bool pressed) { emit_signal("SetVisibility_TakeLowest", pressed); }
+void UILogic::toggleTotal(const bool pressed) { emit_signal("SetVisibility_Total", pressed); }
+void UILogic::toggleValues(const bool pressed) { emit_signal("SetVisibility_Values", pressed); }
 
 void UILogic::spawnDice()
 {
@@ -93,11 +108,17 @@ void UILogic::spawnDice()
 		emit_signal("SpawnDice", pair.first, pair.second);
 	}
 	
-	diceCounts.clear();
+	rolledSinceCountUpdate = true;
 }
 
 void UILogic::updateEquation(const int sides, const bool reduce)
 {
+	if(rolledSinceCountUpdate)
+	{
+		diceCounts.clear();
+		rolledSinceCountUpdate = false;
+	}
+	
 	if(reduce)
 		diceCounts[sides]--;
 	else

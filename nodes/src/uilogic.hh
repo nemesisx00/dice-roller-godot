@@ -21,18 +21,22 @@ namespace godot
 			void pressHandler_d20(const Ref<InputEvent> event);
 			void pressHandler_d100(const Ref<InputEvent> event);
 			
-			void pressHandler_average();
-			void pressHandler_dropHighest();
-			void pressHandler_dropLowest();
-			void pressHandler_takeHighest();
-			void pressHandler_takeLowest();
-			void pressHandler_total();
+			void pressHandler_roll();
+			
+			void toggleDropHighest(const bool pressed);
+			void toggleDropLowest(const bool pressed);
+			void toggleTakeHighest(const bool pressed);
+			void toggleTakeLowest(const bool pressed);
+			void toggleTotal(const bool pressed);
+			void toggleValues(const bool pressed);
 		
 		protected:
 			static void _bind_methods();
 		
 		private:
 			bool isEditor;
+			
+			bool rolledSinceCountUpdate = false;
 			std::map<int, int> diceCounts;
 			
 			UILogic() = default;
