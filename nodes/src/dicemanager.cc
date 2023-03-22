@@ -24,7 +24,7 @@ void DiceManager::_bind_methods()
 	ClassDB::bind_method(D_METHOD("handleClearDice"), &DiceManager::handleClearDice);
 	ClassDB::bind_method(D_METHOD("handleSpawnDice"), &DiceManager::handleSpawnDice);
 	
-	ADD_SIGNAL(MethodInfo("roll_completed"));
+	ADD_SIGNAL(MethodInfo("RollCompleted", PropertyInfo(Variant::DICTIONARY, "results")));
 	
 	ClassDB::add_property_group("DiceManager", "Dice Properties", "");
 	
@@ -204,11 +204,13 @@ void DiceManager::processResults()
 		diceValues[die->getSides()].push_back(die->getValue());
 	}
 	
+	TypedArray<Dictionary> transport;
 	for(auto pair : diceValues)
 	{
 		RollResult result(pair.first, pair.second);
-		UtilityFunctions::print(result.values.size(), "d", result.sides, " Total: ", result.total);
+		transport.append(result.into());
 	}
 	
-	emit_signal("roll_completed");
+	UtilityFunctions::print("Emitting RollCompleted!");
+	emit_signal("RollCompleted", transport);
 }
