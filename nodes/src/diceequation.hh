@@ -19,7 +19,7 @@ namespace godot
 		
 		private:
 			bool isEditor;
-			String dieFormat = "{0}d{1}";
+			const String dieFormat = "{0}d{1}";
 			
 			DiceEquation() = default;
 			~DiceEquation() = default;
