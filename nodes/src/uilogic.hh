@@ -11,6 +11,7 @@ namespace godot
 		GDCLASS(UILogic, Control)
 		
 		public:
+			void _process(double delta) override;
 			void _ready() override;
 			
 			void pressHandler_d4(const Ref<InputEvent> event);

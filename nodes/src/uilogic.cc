@@ -1,16 +1,11 @@
-#include <godot_cpp/core/property_info.hpp>
 #include <uilogic.hh>
 
-#include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/input.hpp>
 #include <godot_cpp/classes/input_event_mouse_button.hpp>
-#include <godot_cpp/classes/global_constants.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/check_button.hpp>
-#include <godot_cpp/variant/callable.hpp>
-#include <godot_cpp/variant/utility_functions.hpp>
-#include <godot_cpp//variant/dictionary.hpp>
+
 #include <dienode.hh>
 
 using namespace godot;
@@ -44,6 +39,12 @@ void UILogic::_bind_methods()
 	ADD_SIGNAL(MethodInfo("SetVisibility_TakeLowest", PropertyInfo(Variant::BOOL, "pressed")));
 	ADD_SIGNAL(MethodInfo("SetVisibility_Total", PropertyInfo(Variant::BOOL, "pressed")));
 	ADD_SIGNAL(MethodInfo("SetVisibility_Values", PropertyInfo(Variant::BOOL, "pressed")));
+}
+
+void UILogic::_process(double delta)
+{
+	if(Input::get_singleton()->is_action_just_pressed("ui_cancel"))
+		get_tree()->change_scene_to_file("res://Menu.tscn");
 }
 
 void UILogic::_ready()
@@ -102,11 +103,8 @@ void UILogic::spawnDice()
 {
 	emit_signal("ClearDice");
 	
-	UtilityFunctions::print("Spawning dice!");
 	for(auto pair : diceCounts)
-	{
 		emit_signal("SpawnDice", pair.first, pair.second);
-	}
 	
 	rolledSinceCountUpdate = true;
 }
@@ -129,9 +127,7 @@ void UILogic::updateEquation(const int sides, const bool reduce)
 	
 	Dictionary dict;
 	for(auto pair : diceCounts)
-	{
 		dict[pair.first] = pair.second;
-	}
 	
 	emit_signal("UpdateEquation", dict);
 }
