@@ -34,14 +34,5 @@ void MainMenu::pressHandler_quit()
 
 void MainMenu::pressHandler_start()
 {
-	Ref<PackedScene> resource = ResourceLoader::get_singleton()->load("res://Main.tscn");
-	if(resource->can_instantiate())
-	{
-		auto scene = Node::cast_to<Node3D>(resource->instantiate());
-		auto tree = get_tree();
-		
-		tree->get_current_scene()->queue_free();
-		tree->get_root()->add_child(scene);
-		tree->set_current_scene(scene);
-	}
+	get_tree()->change_scene_to_file("res://Main.tscn");
 }
