@@ -107,7 +107,7 @@ void DiceResults::update(const TypedArray<Dictionary> results)
 			valuesString += " + ";
 		params.clear();
 		params.push_back(result.sides);
-		valuesString += "d" + format.format(params) + "[" + tempValues + "]";
+		valuesString += "d" + format.format(params) + "(" + tempValues + ")";
 		
 		if(result.values.size() > 1)
 		{
