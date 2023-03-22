@@ -1,20 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq5n20yifaxto"]
+[gd_scene load_steps=4 format=3 uid="uid://dq5n20yifaxto"]
 
+[ext_resource type="Theme" uid="uid://cbw3j2bf5ylws" path="res://assets/theme-textedit-transparent.tres" id="1_fcjxg"]
 [ext_resource type="PackedScene" uid="uid://bud6ekkcpcpcj" path="res://ui/DiceButtons.tscn" id="1_fx36n"]
-[ext_resource type="PackedScene" uid="uid://fwxkyfry7ek4" path="res://ui/RollButtons.tscn" id="2_ijud4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ho5o5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hjjq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_epjpm"]
-
-[sub_resource type="Theme" id="Theme_r4ssx"]
-TextEdit/colors/font_readonly_color = Color(0.87451, 0.87451, 0.87451, 1)
-TextEdit/fonts/font = null
-TextEdit/styles/focus = SubResource("StyleBoxEmpty_ho5o5")
-TextEdit/styles/normal = SubResource("StyleBoxEmpty_4hjjq")
-TextEdit/styles/read_only = SubResource("StyleBoxEmpty_epjpm")
+[ext_resource type="PackedScene" uid="uid://c7ljxk07oek50" path="res://ui/RollResults.tscn" id="2_s7gt1"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -40,7 +28,7 @@ theme_override_constants/margin_right = 25
 layout_mode = 2
 tooltip_text = "Equation"
 mouse_default_cursor_shape = 0
-theme = SubResource("Theme_r4ssx")
+theme = ExtResource("1_fcjxg")
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true
@@ -53,6 +41,11 @@ anchor_right = 1.0
 offset_left = -207.0
 offset_bottom = 308.0
 grow_horizontal = 0
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+
+[node name="RollResults" parent="MarginContainer2" instance=ExtResource("2_s7gt1")]
+layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -83,6 +76,51 @@ grow_vertical = 0
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="RollButtons" parent="MarginContainer4" instance=ExtResource("2_ijud4")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer4"]
+layout_mode = 2
+alignment = 2
+
+[node name="TotalButton" type="CheckButton" parent="MarginContainer4/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
+button_pressed = true
+text = "Sum Total"
+
+[node name="DropHighestButton" type="CheckButton" parent="MarginContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Drop Highest"
+
+[node name="DropLowestButton" type="CheckButton" parent="MarginContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Drop Lowest"
+
+[node name="TakeHighestButton" type="CheckButton" parent="MarginContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Take Highest"
+
+[node name="TakeLowestButton" type="CheckButton" parent="MarginContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Take Lowest"
+
+[node name="ValuesButton" type="CheckButton" parent="MarginContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Rolled Values"
+
+[node name="Roll" type="Button" parent="MarginContainer4/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+text = "Roll"

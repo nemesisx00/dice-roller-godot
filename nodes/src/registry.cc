@@ -3,6 +3,7 @@
 
 #include <diceequation.hh>
 #include <dicemanager.hh>
+#include <diceresults.hh>
 #include <dienode.hh>
 #include <direction.hh>
 #include <hellocpp.hh>
@@ -17,6 +18,7 @@ void registerNodes(godot::ModuleInitializationLevel p_level)
 	{
 		ClassDB::register_class<DiceEquation>();
 		ClassDB::register_class<DiceManager>();
+		ClassDB::register_class<DiceResults>();
 		ClassDB::register_class<DieNode>();
 		ClassDB::register_class<Direction>();
 		ClassDB::register_class<HelloCpp>();
