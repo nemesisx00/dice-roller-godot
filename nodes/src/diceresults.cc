@@ -91,7 +91,6 @@ void DiceResults::update(const TypedArray<Dictionary> results)
 	for(int64_t i = 0; i < resultsSize; i++)
 	{
 		auto result = RollResult(results[i]);
-		UtilityFunctions::print(result.values.size(), "d", result.sides, " Total: ", result.total);
 		
 		String tempValues;
 		for(auto val : result.values)
@@ -216,9 +215,9 @@ void DiceResults::setTakeLowest(const bool pressed)
 
 void DiceResults::setTotal(const bool pressed)
 {
-	TakeLowest = pressed;
+	Total = pressed;
 	auto parent = Node::cast_to<HBoxContainer>(get_node<TextEdit>("%Total")->get_parent());
-	if(TakeLowest)
+	if(Total)
 		parent->show();
 	else
 		parent->hide();
@@ -226,9 +225,9 @@ void DiceResults::setTotal(const bool pressed)
 
 void DiceResults::setValues(const bool pressed)
 {
-	TakeLowest = pressed;
+	Values = pressed;
 	auto parent = Node::cast_to<VBoxContainer>(get_node<TextEdit>("%Values")->get_parent());
-	if(TakeLowest)
+	if(Values)
 		parent->show();
 	else
 		parent->hide();
