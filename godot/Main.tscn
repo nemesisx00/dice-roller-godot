@@ -1,7 +1,25 @@
-[gd_scene load_steps=14 format=3 uid="uid://bmgyf6xj5nywp"]
+[gd_scene load_steps=18 format=3 uid="uid://bmgyf6xj5nywp"]
 
 [ext_resource type="Material" uid="uid://dsbw4r4dv5itt" path="res://assets/material-tray.tres" id="1_3ym54"]
 [ext_resource type="PackedScene" uid="uid://dq5n20yifaxto" path="res://ui/UI.tscn" id="3_feucb"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_dbowp"]
+rayleigh_coefficient = 10.0
+turbidity = 50.0
+energy_multiplier = 5.0
+
+[sub_resource type="Sky" id="Sky_ah4gf"]
+sky_material = SubResource("PhysicalSkyMaterial_dbowp")
+
+[sub_resource type="Environment" id="Environment_1vh7q"]
+background_mode = 2
+sky = SubResource("Sky_ah4gf")
+sky_rotation = Vector3(3.14159, 0, 0)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_length = 16.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_g45dk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_58oft"]
 size = Vector3(50, 1, 50)
@@ -34,11 +52,15 @@ size = Vector3(50, 1, 50)
 
 [node name="App" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 35, 7.5)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1vh7q")
+camera_attributes = SubResource("CameraAttributesPractical_g45dk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.637558, -0.303667, -0.70803, 0.770402, 0.251304, 0.585941, -2.01116e-09, -0.919039, 0.394166, 0, 50, 0)
+transform = Transform3D(0.994967, -0.0394977, -0.0920929, 0.100206, 0.392183, 0.914413, -2.15036e-08, -0.919039, 0.394167, 0, 50, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 35, 7.5)
 
 [node name="DiceTray" type="StaticBody3D" parent="."]
 
@@ -56,7 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -25)
 shape = SubResource("BoxShape3D_b3eik")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceTray/WallNorth"]
-transform = Transform3D(50, 0, 0, 0, 5, 0, 0, 0, 1, 0, -7.5, 0)
+transform = Transform3D(51, 0, 0, 0, 5, 0, 0, 0, 1, 0, -7.5, 0)
 mesh = SubResource("BoxMesh_phx6d")
 skeleton = NodePath("../CollisionShape3D")
 surface_material_override/0 = ExtResource("1_3ym54")
@@ -68,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 25)
 shape = SubResource("BoxShape3D_8mk4x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceTray/WallSouth"]
-transform = Transform3D(50, 0, 0, 0, 5, 0, 0, 0, 1, 0, -7.5, 0)
+transform = Transform3D(51, 0, 0, 0, 5, 0, 0, 0, 1, 0, -7.5, 0)
 mesh = SubResource("BoxMesh_617tb")
 skeleton = NodePath("../CollisionShape3D")
 surface_material_override/0 = ExtResource("1_3ym54")

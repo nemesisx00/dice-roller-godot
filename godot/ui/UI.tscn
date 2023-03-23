@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dq5n20yifaxto"]
 
-[ext_resource type="Theme" uid="uid://cbw3j2bf5ylws" path="res://assets/theme-textedit-transparent.tres" id="1_fcjxg"]
 [ext_resource type="PackedScene" uid="uid://bud6ekkcpcpcj" path="res://ui/DiceButtons.tscn" id="1_fx36n"]
+[ext_resource type="Theme" uid="uid://3clnuvhvi0i6" path="res://assets/theme-base.tres" id="1_yw14t"]
 [ext_resource type="PackedScene" uid="uid://c7ljxk07oek50" path="res://ui/RollResults.tscn" id="2_s7gt1"]
 
 [node name="UI" type="Control"]
@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_yw14t")
 
 [node name="UILogic" type="UILogic" parent="."]
 layout_mode = 2
@@ -28,7 +29,6 @@ theme_override_constants/margin_right = 25
 layout_mode = 2
 tooltip_text = "Equation"
 mouse_default_cursor_shape = 0
-theme = ExtResource("1_fcjxg")
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true

@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7ljxk07oek50"]
-
-[ext_resource type="Theme" uid="uid://cbw3j2bf5ylws" path="res://assets/theme-textedit-transparent.tres" id="1_73mwd"]
+[gd_scene format=3 uid="uid://c7ljxk07oek50"]
 
 [node name="RollResults" type="DiceResults"]
 anchors_preset = 15
@@ -25,7 +23,6 @@ vertical_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_73mwd")
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true
@@ -47,7 +44,6 @@ vertical_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_73mwd")
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true
@@ -69,7 +65,6 @@ vertical_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_73mwd")
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true
@@ -91,7 +86,6 @@ vertical_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_73mwd")
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true
@@ -113,13 +107,15 @@ vertical_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_73mwd")
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 visible = false
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -132,7 +128,6 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_73mwd")
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true
