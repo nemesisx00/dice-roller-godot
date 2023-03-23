@@ -1,4 +1,2 @@
 **/*.dll
 .godot/
-libraries/debug
-libraries/release

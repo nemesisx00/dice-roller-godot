@@ -1,3 +1,9 @@
+[tasks.compile]
+dependencies = [
+	"compile-debug",
+	"compile-release"
+]
+
 [tasks.compile-debug]
 dependencies = [
 	"cmake-debug",
@@ -33,13 +39,13 @@ command = "cmake"
 
 [tasks.copy-debug]
 script = '''
-cp -F build/debug/nodes.dll ../godot/libraries/debug/ # shell2batch: xcopy /f /y .\build\debug\nodes.dll ..\godot\libraries\debug\
+cp -F build/debug/nodes.dll ../godot/libraries/nodes.win64d.dll # shell2batch: xcopy /f /r /y .\build\debug\nodes.dll ..\godot\libraries\nodes.win64d.dll*
 '''
 script_runner = "@shell"
 
 [tasks.copy-release]
 script = '''
-cp -F build/release/nodes.dll ../godot/libraries/release/ # shell2batch: xcopy /f /y .\build\release\nodes.dll ..\godot\libraries\release\
+cp -F build/release/nodes.dll ../godot/libraries/nodes.win64.dll # shell2batch: xcopy /f /r /y .\build\release\nodes.dll ..\godot\libraries\nodes.win64.dll*
 '''
 script_runner = "@shell"
 

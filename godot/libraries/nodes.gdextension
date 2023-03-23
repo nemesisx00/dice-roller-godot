@@ -4,5 +4,5 @@
 entry_symbol = "godotCppInit"
 
 [libraries]
-windows.debug.x86_64 = "res://libraries/debug/nodes.dll"
-windows.release.x86_64 = "res://libraries/release/nodes.dll"
+windows.debug.x86_64 = "nodes.win64d.dll"
+windows.release.x86_64 = "nodes.win64.dll"
