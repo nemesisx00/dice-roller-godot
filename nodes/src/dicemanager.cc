@@ -211,6 +211,5 @@ void DiceManager::processResults()
 		transport.append(result.into());
 	}
 	
-	UtilityFunctions::print("Emitting RollCompleted!");
 	emit_signal("RollCompleted", transport);
 }
