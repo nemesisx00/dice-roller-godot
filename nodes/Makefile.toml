@@ -1,45 +1,52 @@
 [tasks.compile-debug]
 dependencies = [
 	"cmake-debug",
-	"ninja",
+	"ninja-debug",
 	"copy-debug"
 ]
 
 [tasks.compile-release]
 dependencies = [
 	"cmake-release",
-	"ninja",
+	"ninja-release",
 	"copy-release"
 ]
 
 [tasks.cmake-clean]
 script = '''
-rm -rF ./build/.cache
-rm -rF ./build/CMakeFiles
-rm -F ./build/*.*
+rm -rF ./build/debug/.cache
+rm -rF ./build/debug/CMakeFiles
+rm -rF ./build/debug/*.*
+rm -rF ./build/release/.cache
+rm -rF ./build/release/CMakeFiles
+rm -rF ./build/release/*.*
 '''
 script_runner = "@shell"
 
 [tasks.cmake-debug]
-args = ["-S", ".", "-B", "./build", "-G", "Ninja", "-DCMAKE_BUILD_TYPE:STRING=Debug"]
+args = ["-S", ".", "-B", "./build/debug", "-G", "Ninja", "-DCMAKE_BUILD_TYPE:STRING=Debug"]
 command = "cmake"
 
 [tasks.cmake-release]
-args = ["-S", ".", "-B", "./build", "-G", "Ninja", "-DCMAKE_BUILD_TYPE:STRING=Release"]
+args = ["-S", ".", "-B", "./build/release", "-G", "Ninja", "-DCMAKE_BUILD_TYPE:STRING=Release"]
 command = "cmake"
 
 [tasks.copy-debug]
 script = '''
-cp -F build/nodes.dll ../godot/libraries/ # shell2batch: xcopy /f /y .\build\nodes.dll ..\godot\libraries\
+cp -F build/debug/nodes.dll ../godot/libraries/debug/ # shell2batch: xcopy /f /y .\build\debug\nodes.dll ..\godot\libraries\debug\
 '''
 script_runner = "@shell"
 
 [tasks.copy-release]
 script = '''
-cp -F build/nodes.dll ../godot/libraries/ # shell2batch: xcopy /f /y .\build\nodes.dll ..\godot\libraries\
+cp -F build/release/nodes.dll ../godot/libraries/release/ # shell2batch: xcopy /f /y .\build\release\nodes.dll ..\godot\libraries\release\
 '''
 script_runner = "@shell"
 
-[tasks.ninja]
-args = ["-C", "./build"]
+[tasks.ninja-debug]
+args = ["-C", "./build/debug"]
+command = "ninja"
+
+[tasks.ninja-release]
+args = ["-C", "./build/release"]
 command = "ninja"

@@ -11,7 +11,7 @@ set(FETCHCONTENT_QUIET FALSE)
 FetchContent_Declare(
 	GodotCpp
 	GIT_REPOSITORY https://github.com/godotengine/godot-cpp
-	GIT_TAG godot-4.0-stable
+	GIT_TAG godot-4.0.1-stable
 	GIT_PROGRESS TRUE
 )
 FetchContent_MakeAvailable(GodotCpp)
