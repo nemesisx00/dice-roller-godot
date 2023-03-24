@@ -6,11 +6,13 @@ on:
     paths:
       - 'nodes/src/**.cc'
       - 'nodes/src/**.hh'
+      - 'nodes/CMakeLists.txt'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'nodes/src/**.cc'
       - 'nodes/src/**.hh'
+      - 'nodes/CMakeLists.txt'
 
 jobs:
   build:
