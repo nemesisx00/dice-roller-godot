@@ -15,7 +15,7 @@ jobs:
           - { name: "Linux gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", buildType: "Release" }
           - { name: "Windows Clang", os: windows-latest, cc: "clang", cxx: "clang++", buildType: "Release" }
     
-    runs-on: ${{matrix.config.config.os}}
+    runs-on: ${{matrix.config.os}}
     
     steps:
     - uses: actions/checkout@v3
