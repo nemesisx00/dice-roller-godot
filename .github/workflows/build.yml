@@ -3,8 +3,14 @@ name: Build GDExtension Project
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'nodes/src/**.cc'
+      - 'nodes/src/**.hh'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'nodes/src/**.cc'
+      - 'nodes/src/**.hh'
 
 jobs:
   build:
