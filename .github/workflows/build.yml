@@ -22,7 +22,7 @@ jobs:
     - name: Windows Setup
       if: startsWith(matrix.config.os, 'windows')
       run: |
-        scoop install cmake llvm ninja
+        choco install cmake llvm ninja
         cmake --version
         clang++ --version
         ninja --version
