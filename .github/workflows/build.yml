@@ -34,6 +34,9 @@ jobs:
       if: startsWith(matrix.config.os, 'macos')
       run: |
         brew install cmake ninja
+        cmake --version
+        clang++ --version
+        ninja --version
     
     - name: Windows Setup
       if: startsWith(matrix.config.os, 'windows')
