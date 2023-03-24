@@ -11,13 +11,29 @@ jobs:
     strategy:
       matrix:
         config:
-          - { name: "Windows Clang Debug", os: windows-latest, cc: "clang", cxx: "clang++", buildType: "Debug" }
-          - { name: "Windows Clang Release", os: windows-latest, cc: "clang", cxx: "clang++", buildType: "Release" }
+          - { name: "MacOS Clang", os: macos-latest, cc: "clang", cxx: "clang++", buildType: "Release" }
+          - { name: "Linux gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", buildType: "Release" }
+          - { name: "Windows Clang", os: windows-latest, cc: "clang", cxx: "clang++", buildType: "Release" }
     
-    runs-on: ${{matrix.config.os}}
+    runs-on: ${{matrix.config.config.os}}
     
     steps:
     - uses: actions/checkout@v3
+    
+    # ---------- Set up the environment ----------
+    - name: Linux Setup
+      if: startsWith(matrix.config.os, 'ubuntu')
+      run: |
+        sudo apt-get update
+        sudo apt-get install cmake ninja-build
+        cmake --version
+        gcc --version
+        ninja --version
+    
+    - name: MacOS Setup
+      if: startsWith(matrix.config.os, 'macos')
+      run: |
+        brew install cmake ninja
     
     - name: Windows Setup
       if: startsWith(matrix.config.os, 'windows')
@@ -27,11 +43,12 @@ jobs:
         clang++ --version
         ninja --version
     
+    # ---------- Build the project ----------
     - name: Configure CMake
       env:
-          CC: ${{matrix.cc}}
-          CXX: ${{matrix.cxx}}
-          BUILD_TYPE: ${{matrix.buildType}}
+          CC: ${{matrix.config.cc}}
+          CXX: ${{matrix.config.cxx}}
+          BUILD_TYPE: ${{matrix.config.buildType}}
       run: cmake -S ${{github.workspace}}/nodes -B ${{github.workspace}}/nodes/build -G Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
     
     - name: Build
