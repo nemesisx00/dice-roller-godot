@@ -18,12 +18,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Configure CMake
-      env:
-          CC: ${{matrix.cc}}
-          CXX: ${{matrix.cxx}}
-          BUILD_TYPE: Release
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-    
-    - name: Build
-      run: cmake --build ${{github.workspace}}/build
+    - uses: UnsafePointer/cmake-clang-ninja-build-github-action@v1.4
+      with:
+        dir: "${{github.workspace}}/nodes"
