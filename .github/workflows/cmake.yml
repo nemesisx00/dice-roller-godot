@@ -11,13 +11,25 @@ jobs:
     strategy:
       matrix:
         config:
-          - { name: "Windows Clang", os: windows-latest, cc: "clang", cxx: "clang++" }
+          - { name: "Windows Clang Debug", os: windows-latest, cc: "clang", cxx: "clang++", buildType: "Debug" }
+          - { name: "Windows Clang Release", os: windows-latest, cc: "clang", cxx: "clang++", buildType: "Release" }
     
     runs-on: ${{matrix.config.os}}
     
     steps:
     - uses: actions/checkout@v3
     
-    - uses: UnsafePointer/cmake-clang-ninja-build-github-action@v1.4
-      with:
-        dir: "${{github.workspace}}/nodes"
+    - name: Windows Setup
+      if: startsWith(matrix.config.os, 'windows')
+      run: |
+        scoop install cmake llvm ninja
+    
+    - name: Configure CMake
+      env:
+          CC: ${{matrix.cc}}
+          CXX: ${{matrix.cxx}}
+          BUILD_TYPE: Release
+      run: cmake -S ${{github.workspace}}/nodes -B ${{github.workspace}}/nodes/build -G Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+    
+    - name: Build
+      run: cmake --build ${{github.workspace}}/nodes/build
