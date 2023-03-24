@@ -1,4 +1,4 @@
-name: CMake
+name: Build GDExtension Project
 
 on:
   push:
@@ -23,12 +23,15 @@ jobs:
       if: startsWith(matrix.config.os, 'windows')
       run: |
         scoop install cmake llvm ninja
+        cmake --version
+        clang++ --version
+        ninja --version
     
     - name: Configure CMake
       env:
           CC: ${{matrix.cc}}
           CXX: ${{matrix.cxx}}
-          BUILD_TYPE: Release
+          BUILD_TYPE: ${{matrix.buildType}}
       run: cmake -S ${{github.workspace}}/nodes -B ${{github.workspace}}/nodes/build -G Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
     
     - name: Build
