@@ -42,6 +42,14 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 36
 text = "Let's Roll!"
 
+[node name="GodotLicense" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 36
+text = "Godot License"
+
 [node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)

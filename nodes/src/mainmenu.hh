@@ -12,6 +12,7 @@ namespace godot
 		public:
 			void _ready() override;
 			
+			void pressHandler_godotLicense();
 			void pressHandler_quit();
 			void pressHandler_start();
 		
