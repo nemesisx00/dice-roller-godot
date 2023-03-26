@@ -1,0 +1,25 @@
+{
+  "name": "dice-roller-godot-github-page",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "fs.realpath": "^1.0.0",
+    "glob": "^7.2.3",
+    "inflight": "^1.0.6",
+    "inherits": "^2.0.4",
+    "ms": "^2.1.2",
+    "once": "^1.4.0",
+    "path-is-absolute": "^1.0.1",
+    "sax": "^1.2.4",
+    "source-map": "^0.7.4",
+    "stylus": "^0.59.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"stylus": "stylus --compress ./stylus/app.styl --out ./web/assets/app.css"
+  },
+  "author": "Peter Lunneberg",
+  "license": "MIT"
+}

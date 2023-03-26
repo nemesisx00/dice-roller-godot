@@ -1,0 +1,48 @@
+.app .mainContent
+	flex(column)
+	margin 0 auto
+	position relative
+	width 75vw
+	z-index 10
+	
+	& .primarySection
+		background-color backgroundDark
+		border-radius 15px
+		filter drop-shadow(1rem 1rem .5rem backgroundDarkShadow)
+		margin 0 auto 0 25px
+		padding 25px 5% 50px
+		text-align justify
+		width 60%
+		
+		&.right
+			filter drop-shadow(-1rem 1rem .5rem backgroundDarkShadow)
+			margin 0 25px 0 auto
+			
+			& .row
+				flex(row-reverse)
+				justify-content flex-end
+		
+		& h3
+			font-size 3em
+			margin-bottom 25px
+		
+		& .row
+			flex(row)
+			
+			&.video
+				flex(column)
+			
+			& .content
+				font-size 1.5em
+				justify-content flex-start
+			
+			& img
+				max-width 25%
+				margin-left 25px
+			
+			& video
+				margin-top 25px
+				max-width 100%
+	
+	& .spacer
+		height 400px
