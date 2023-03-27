@@ -34,7 +34,7 @@ jobs:
     
     # ---------- Set up the environment ----------
     - name: Linux Setup
-      if: startsWith(matrix.config.os, "ubuntu")
+      if: startsWith(matrix.config.os, 'ubuntu')
       run: |
         sudo apt-get update
         sudo apt-get install cmake ninja-build
@@ -43,7 +43,7 @@ jobs:
         ninja --version
     
     - name: MacOS Setup
-      if: startsWith(matrix.config.os, "macos")
+      if: startsWith(matrix.config.os, 'macos')
       run: |
         brew install cmake ninja
         cmake --version
@@ -51,7 +51,7 @@ jobs:
         ninja --version
     
     - name: Windows Setup
-      if: startsWith(matrix.config.os, "windows")
+      if: startsWith(matrix.config.os, 'windows')
       run: |
         choco install cmake llvm ninja
         cmake --version
