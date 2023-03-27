@@ -16,10 +16,10 @@ h1,h2,h3,h4,h5,h6
 .app
 	
 	& .parallax
-		left 0
+		left calc((1920px - 100%) * -1)
 		position fixed
 		top 34px
-		width 100vw
+		height 100vh
 		z-index 0
 	
 	& .transparentColumn
@@ -36,3 +36,4 @@ h1,h2,h3,h4,h5,h6
 @require "./header"
 @require "./footer"
 @require "./content"
+@require "./queries"

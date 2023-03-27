@@ -1,0 +1,43 @@
+@media (max-width: 720px)
+	.app
+		
+		& header h1
+			font-size 2em
+			line-height 65px
+		
+		& .parallax
+			left -750px
+		
+		& .transparentColumn
+			left 0
+			width 100%
+		
+		& .mainContent
+			width 100%
+			
+			& .primarySection
+				width 95%
+				
+				& h3
+					font-size 1.5em
+				
+				& .row .content
+					font-size 1em
+			
+			& .spacer
+				height 150px
+		
+		& footer *
+			font-size .8em
+
+@media (max-width: 1280px)
+	.app .mainContent .primarySection
+		width 80%
+
+@media (min-width: 721px) and (max-width: 960px)
+	.app .parallax
+		left calc(((1920px - 100%) * -1) + 50%)
+
+@media (min-width: 961px) and (max-width: 1280px)
+	.app .parallax
+		left calc(((1920px - 100%) * -1) + 35%)
