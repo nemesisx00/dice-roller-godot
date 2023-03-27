@@ -1,4 +1,4 @@
-@media (max-width: 500px)
+@media screen and (max-width: 500px)
 	.app
 		
 		& header
@@ -21,11 +21,11 @@
 			& .verticalBorder
 				margin 0 7px
 
-@media (min-width: 501px) and (max-width: 720px)
+@media screen and (min-width: 501px) and (max-width: 720px)
 	.app header h1
 		line-height 65px
 
-@media (max-width: 720px)
+@media screen and (max-width: 720px)
 	.app
 		
 		& header h1
@@ -56,14 +56,20 @@
 		& footer *
 			font-size .8em
 
-@media (min-width: 721px) and (max-width: 960px)
-	.app .parallax
-		left calc(((1920px - 100%) * -1) + 50%)
+@media screen and (min-width: 721px) and (max-width: 960px)
+	.app
+		
+		& .parallax
+			left calc(((1920px - 100%) * -1) + 50%)
+		
+		& .mainContent .primarySection
+			width 80%
 
-@media (min-width: 961px) and (max-width: 1280px)
-	.app .parallax
-		left calc(((1920px - 100%) * -1) + 35%)
-
-@media (max-width: 1280px)
-	.app .mainContent .primarySection
-		width 80%
+@media screen and (min-width: 961px) and (max-width: 1280px)
+	.app
+		
+		& .parallax
+			left calc(((1920px - 100%) * -1) + 35%)
+		
+		& .mainContent .primarySection
+			width 80%
