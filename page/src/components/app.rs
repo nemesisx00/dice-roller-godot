@@ -16,12 +16,12 @@ flat on the tray!
 "#;
 
 const blurb2: &'static str = r#"
-Leveraging the power of Godot 4's GDExtension system, which
+Leveraging the power of Godot 4's GDExtension API, which
 provides the capability to write scripts in virtually any language,
 this project's code is written entirely in C++ using the official
-godot-cpp bindings for the GDExtensions API. It's also set up to
-build using CMake and Ninja. You can take a look under the hood
-and see how everything works over at the Github repository.
+godot-cpp bindings. It's also set up to build using CMake and Ninja.
+You can take a look under the hood and see how everything works over
+at the Github repository.
 "#;
 
 const blurb3: &'static str = r#"
