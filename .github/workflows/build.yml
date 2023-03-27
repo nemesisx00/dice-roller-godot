@@ -13,7 +13,9 @@ on:
       - "nodes/src/**.cc"
       - "nodes/src/**.hh"
       - "nodes/CMakeLists.txt"
-
+  
+  workflow_dispatch:
+    
 concurrency:
   group: ${{github.workflow}}
   cancel-in-progress: false
