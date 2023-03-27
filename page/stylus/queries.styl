@@ -5,7 +5,6 @@
 			
 			& h1
 				font-size 1.5em
-				line-height 67px
 			
 			& .github
 				right 10px
@@ -20,6 +19,10 @@
 			
 			& .verticalBorder
 				margin 0 7px
+
+@media (min-width: 451px) and (max-width: 720px)
+	.app header h1
+		line-height 69px
 
 @media (max-width: 720px)
 	.app
@@ -53,10 +56,6 @@
 		& footer *
 			font-size .8em
 
-@media (max-width: 1280px)
-	.app .mainContent .primarySection
-		width 80%
-
 @media (min-width: 721px) and (max-width: 960px)
 	.app .parallax
 		left calc(((1920px - 100%) * -1) + 50%)
@@ -64,3 +63,7 @@
 @media (min-width: 961px) and (max-width: 1280px)
 	.app .parallax
 		left calc(((1920px - 100%) * -1) + 35%)
+
+@media (max-width: 1280px)
+	.app .mainContent .primarySection
+		width 80%
